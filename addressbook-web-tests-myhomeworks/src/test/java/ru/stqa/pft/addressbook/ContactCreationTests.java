@@ -4,18 +4,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
-
 import java.util.concurrent.TimeUnit;
-import java.util.Date;
-import java.io.File;
 
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
-
-import static org.openqa.selenium.OutputType.*;
 
 
 public class ContactCreationTests {
@@ -26,19 +18,19 @@ public class ContactCreationTests {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     wd.get("http://localhost:8080/addressbook/");
-    login();
+    login("admin", "secret");
   }
 
-  private void login() {
+  private void login(String username, String password) {
     wd.findElement(By.name("pass")).click();
     wd.findElement(By.name("pass")).sendKeys("\\undefined");
     wd.findElement(By.name("user")).click();
     wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys("admin");
+    wd.findElement(By.name("user")).sendKeys(username);
     wd.findElement(By.id("LoginForm")).click();
     wd.findElement(By.name("pass")).click();
     wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys("secret");
+    wd.findElement(By.name("pass")).sendKeys(password);
     wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
   }
 
@@ -46,7 +38,7 @@ public class ContactCreationTests {
   public void testContactCreationTests() {
 
     gotoContactPage();
-    fillContactForm();
+    fillContactForm(new ContactData("Vasiliy", "Oblomov", "Minsk, Stroiteley 20/15", "+375 17 5244121", "+375 29 6254552"));
     submitContactCreation();
   }
 
@@ -54,22 +46,22 @@ public class ContactCreationTests {
     wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
   }
 
-  private void fillContactForm() {
+  private void fillContactForm(ContactData contactData) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys("Vasiliy");
+    wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
     wd.findElement(By.name("lastname")).click();
     wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys("Oblomov");
+    wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
     wd.findElement(By.name("address")).click();
     wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys("Minsk, Stroiteley 20/15");
+    wd.findElement(By.name("address")).sendKeys(contactData.getAddress());
     wd.findElement(By.name("home")).click();
     wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys("+375 17 5244121");
+    wd.findElement(By.name("home")).sendKeys(contactData.getHomephone());
     wd.findElement(By.name("mobile")).click();
     wd.findElement(By.name("mobile")).clear();
-    wd.findElement(By.name("mobile")).sendKeys("+375 29 6254552");
+    wd.findElement(By.name("mobile")).sendKeys(contactData.getMobilephone());
   }
 
   private void gotoContactPage() {
