@@ -22,10 +22,6 @@ public class ContactCreationTests {
     public void setUp() throws Exception {
         wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-    }
-    
-    @Test
-    public void ContactCreationTests() {
         wd.get("http://localhost:8080/addressbook/");
         wd.findElement(By.name("pass")).click();
         wd.findElement(By.name("pass")).sendKeys("\\undefined");
@@ -37,6 +33,11 @@ public class ContactCreationTests {
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys("secret");
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
+    }
+    
+    @Test
+    public void testContactCreationTests() {
+
         wd.findElement(By.linkText("add new")).click();
         wd.findElement(By.name("firstname")).click();
         wd.findElement(By.name("firstname")).clear();
