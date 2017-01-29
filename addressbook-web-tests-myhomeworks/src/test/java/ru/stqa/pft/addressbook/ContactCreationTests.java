@@ -22,12 +22,10 @@ public class ContactCreationTests {
   }
 
   private void login(String username, String password) {
-    wd.findElement(By.name("pass")).click();
-    wd.findElement(By.name("pass")).sendKeys("\\undefined");
+
     wd.findElement(By.name("user")).click();
     wd.findElement(By.name("user")).clear();
     wd.findElement(By.name("user")).sendKeys(username);
-    wd.findElement(By.id("LoginForm")).click();
     wd.findElement(By.name("pass")).click();
     wd.findElement(By.name("pass")).clear();
     wd.findElement(By.name("pass")).sendKeys(password);
@@ -40,6 +38,7 @@ public class ContactCreationTests {
     gotoContactPage();
     fillContactForm(new ContactData("Vasiliy", "Oblomov", "Minsk, Stroiteley 20/15", "+375 17 5244121", "+375 29 6254552"));
     submitContactCreation();
+    returnToContactsPage();
   }
 
   private void submitContactCreation() {
@@ -66,6 +65,10 @@ public class ContactCreationTests {
 
   private void gotoContactPage() {
     wd.findElement(By.linkText("add new")).click();
+  }
+
+  public void returnToContactsPage() {
+    wd.findElement(By.linkText("home page")).click();
   }
 
   @AfterMethod
