@@ -17,5 +17,6 @@ public class NavigationHelper {
     wd.findElement(By.linkText("groups")).click();
   }
 
+  public void gotoAddNew() { wd.findElement(By.linkText("add new")).click();  }
 
 }

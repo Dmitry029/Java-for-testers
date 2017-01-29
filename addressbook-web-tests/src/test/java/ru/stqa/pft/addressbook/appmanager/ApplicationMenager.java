@@ -13,10 +13,11 @@ public class ApplicationMenager {
 
   FirefoxDriver wd;
 
-  private ContactHelper contactHelper;
+
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
+  private ContactHelper contactHelper;
 
   public static boolean isAlertPresent(FirefoxDriver wd) {
     try {
@@ -38,28 +39,12 @@ public class ApplicationMenager {
     sessionHelper.login("admin", "secret");
   }
 
+  public void stop() { wd.quit();  }
 
-  public void stop() {
-    wd.quit();
-  }
+  public GroupHelper getGroupHelper() { return groupHelper;  }
 
-  public GroupHelper getGroupHelper() {
-    return groupHelper;
-  }
   public ContactHelper getContactHelper() { return contactHelper;  }
 
-  public NavigationHelper getNavigationHelper() {
-    return navigationHelper;
-  }
-
-
-  //* добавление контакта*//
-
-
-  public void gotoAddNew() {
-    wd.findElement(By.linkText("add new")).click();
-  }
-
-
+  public NavigationHelper getNavigationHelper() {return navigationHelper; }
 
 }
