@@ -16,4 +16,6 @@ public class NavigationHelper {
   public void gotoGtoupPage() {
     wd.findElement(By.linkText("groups")).click();
   }
+
+
 }

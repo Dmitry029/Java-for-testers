@@ -8,7 +8,11 @@ import ru.stqa.pft.addressbook.model.ContactData;
  * Created by Администратор on 29.01.2017.
  */
 public class ContactHelper {
-  FirefoxDriver wd;
+  private FirefoxDriver wd;
+
+  public ContactHelper(FirefoxDriver wd) {
+    this.wd = wd;
+  }
 
   public void returnToContacts() {
     wd.findElement(By.linkText("home page")).click();
