@@ -13,7 +13,7 @@ public class ContactHelper extends HelperBase {
     super(wd);
   }
 
-  public void returnToContacts() {
+  public void returnToContactsPage() {
     wd.findElement(By.linkText("home page")).click();
   }
 
@@ -25,8 +25,8 @@ public class ContactHelper extends HelperBase {
     type(By.name("mobile"), contactData.getMobilephone());
     }
 
-    public void submitContactCreation() {click(By.xpath("//div[@id='content']/form/input[21]"));};
+
+  public void submitContactCreation() {click(By.name("submit"));}
 
   }
 
-  //public void submitGroupCreation() {    click(By.name("submit"));  }

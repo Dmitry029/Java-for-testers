@@ -16,7 +16,7 @@ public class NavigationHelper extends HelperBase{
     click(By.linkText("groups"));
   }
 
-  public void gotoAddNew() {
+  public void gotoAddNewContact() {
     click(By.linkText("add new"));
   }
 
