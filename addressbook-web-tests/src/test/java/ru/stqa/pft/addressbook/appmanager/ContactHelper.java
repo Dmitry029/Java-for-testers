@@ -37,6 +37,7 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
+
   public void selectContact() {
     click(By.id("25"));
 
