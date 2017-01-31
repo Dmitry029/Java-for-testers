@@ -39,7 +39,7 @@ public class ContactHelper extends HelperBase {
 
 
   public void selectContact() {
-    click(By.id("25"));
+    click(By.id("22"));
 
   }
 

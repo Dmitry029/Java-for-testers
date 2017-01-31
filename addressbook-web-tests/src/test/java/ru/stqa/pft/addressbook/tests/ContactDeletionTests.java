@@ -10,12 +10,8 @@ public class ContactDeletionTests extends TestBase {
 
   @Test
   public void testContactDelation(){
-    app.getNavigationHelper().gotoAddNewContact();
-    app.getContactHelper().submitContactCreation();
-    app.getContactHelper().returnToContactsPage();
+    app.getNavigationHelper().gotoHome();
     app.getContactHelper().selectContact();
     app.getContactHelper().deledeContact();
-
-
   }
 }
