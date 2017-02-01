@@ -29,7 +29,7 @@ public class ApplicationMenager {
 
 
   public void init() {
-    
+
     if (browser == BrowserType.FIREFOX){
       wd = new FirefoxDriver();
     } else if (browser == BrowserType.CHROME){
