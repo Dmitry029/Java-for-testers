@@ -36,6 +36,7 @@ public class ApplicationMenager {
       wd = new ChromeDriver();
     } else if (browser == BrowserType.IE){
       wd = new InternetExplorerDriver();
+      wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
 

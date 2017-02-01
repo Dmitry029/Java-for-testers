@@ -12,7 +12,7 @@ import ru.stqa.pft.addressbook.appmanager.ApplicationMenager;
  */
 public class TestBase {
 
-  protected final ApplicationMenager app = new ApplicationMenager(BrowserType.FIREFOX);
+  protected final ApplicationMenager app = new ApplicationMenager(BrowserType.IE);
 
   @BeforeMethod
   public void setUp() throws Exception {
