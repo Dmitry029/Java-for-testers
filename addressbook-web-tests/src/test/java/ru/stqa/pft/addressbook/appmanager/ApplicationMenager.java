@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -13,18 +14,22 @@ import java.util.concurrent.TimeUnit;
  */
 public class ApplicationMenager {
 
-  FirefoxDriver wd;
+  WebDriver wd;
 
 
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
   private ContactHelper contactHelper;
+  private String browser;
 
+  public ApplicationMenager(String browser) {
+    this.browser = browser;
+  }
 
 
   public void init() {
-    String browser = BrowserType.FIREFOX;
+    
     if (browser == BrowserType.FIREFOX){
       wd = new FirefoxDriver();
     } else if (browser == BrowserType.CHROME){
@@ -32,7 +37,7 @@ public class ApplicationMenager {
     } else if (browser == BrowserType.IE){
       wd = new InternetExplorerDriver();
     }
-    
+
 
 
     wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
