@@ -30,7 +30,7 @@ public class ContactHelper extends HelperBase {
   public void submitContactCreation() {click(By.name("submit"));}
 
   public void selectModifiedContact() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[14]/td[8]/a/img"));
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
 
   public void submitContactModification()
