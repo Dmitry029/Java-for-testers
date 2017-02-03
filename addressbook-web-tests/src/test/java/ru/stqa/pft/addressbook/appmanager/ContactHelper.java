@@ -39,15 +39,15 @@ public class ContactHelper extends HelperBase {
   }
 
 
-  public void selectContact() {
-    click(By.id("22"));
+ // public void selectContact() {
+ //   click(By.id("22"));
 
-  }
+ // }
 
-  public void deledeContact() {
+  public void deleteContact() {
 
-    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
-    wd.switchTo().alert().accept();
+    click(By.xpath("//div[@id='content']/form[2]/input[2]"));
+   // wd.switchTo().alert().accept();
   }
 }
 
