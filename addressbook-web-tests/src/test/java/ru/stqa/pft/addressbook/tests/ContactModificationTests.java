@@ -20,8 +20,6 @@ public class ContactModificationTests extends TestBase {
     app.getContactHelper().returnToContactsPage();
   }
 
-
-
-  }
+}
 
 
