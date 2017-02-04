@@ -3,10 +3,13 @@ package ru.stqa.pft.addressbook.appmanager;
 //import org.apache.bcel.generic.Select;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import org.openqa.selenium.support.ui.Select;
+
+import static org.testng.Assert.*;
 
 /**
  * Created by Администратор on 29.01.2017.
@@ -18,10 +21,11 @@ public class ContactHelper extends HelperBase {
   }
 
 
-
   public void returnToContactsPage() {
     wd.findElement(By.linkText("home page")).click();
   }
+
+
 
   public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
@@ -33,19 +37,19 @@ public class ContactHelper extends HelperBase {
     if (creation){
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
-      //Assert.assertFalse(isElementPresent(By.name("new_group")));
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
+
 
   public void submitContactCreation() {click(By.name("submit"));}
 
 
 
 
-  public void selectModifiedContact() {
-
+  public void initModificationContact() {
     click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
-     }
+  }
 
   public void submitContactModification()
   {
@@ -64,5 +68,6 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
     wd.switchTo().alert().accept();
   }
+
 }
 

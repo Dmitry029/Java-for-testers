@@ -24,6 +24,7 @@ public class ApplicationMenager {
   private ContactHelper contactHelper;
   private String browser;
 
+
   public ApplicationMenager(String browser) {
     this.browser = browser;
   }
