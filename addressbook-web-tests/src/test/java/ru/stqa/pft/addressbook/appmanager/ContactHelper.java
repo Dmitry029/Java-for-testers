@@ -69,5 +69,15 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
+// Создание контакта
+  public void createContact(ContactData contact, boolean creation ) {
+    fillContactForm(contact, creation);
+    submitContactCreation();
+    returnToContactsPage();
+  }
+// Проверка наличия контакта
+  public boolean isThereAContact() {
+    return isElementPresent(By.xpath("//input[@type='checkbox']"));
+  }
 }
 
