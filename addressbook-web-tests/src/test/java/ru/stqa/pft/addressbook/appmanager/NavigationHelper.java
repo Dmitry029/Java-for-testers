@@ -2,7 +2,7 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
 
 
 /**
@@ -16,7 +16,7 @@ public class NavigationHelper extends HelperBase{
 
   public void gotoGtoupPage() {
     if (isElementPresent(By.tagName("h1"))
-            && wd.findElements(By.tagName("h1")).getText().eguals("Groups")
+            && wd.findElement(By.tagName("h1")).getText().equals("Groups")
             && isElementPresent(By.name("new"))) {
       return;
     }
@@ -35,7 +35,7 @@ public class NavigationHelper extends HelperBase{
 
   public void gotoAddNewContact() {
     if (isElementPresent(By.tagName("h1"))
-            && wd.findElements(By.tagName("h1")).getText().eguals("Edit / add address book entry")
+            && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
             && isElementPresent(By.name("submit"))) {
       return;
     }
