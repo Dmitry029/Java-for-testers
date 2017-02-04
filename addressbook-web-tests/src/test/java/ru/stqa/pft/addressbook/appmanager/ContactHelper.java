@@ -46,7 +46,7 @@ public class ContactHelper extends HelperBase {
 
 
 
-
+// Для модификации контакта
   public void initModificationContact() {
     click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
@@ -58,7 +58,7 @@ public class ContactHelper extends HelperBase {
 
 
 
-
+// Для удаления контакта
   public void selectContactDelation() {
       click(By.xpath("//input[@type='checkbox']"));
   }
