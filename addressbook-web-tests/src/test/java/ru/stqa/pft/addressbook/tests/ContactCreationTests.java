@@ -9,13 +9,21 @@ public class ContactCreationTests extends TestBase{
     public void testContactCreation() {
 
         app.getNavigationHelper().gotoAddNewContact();
-        app.getContactHelper().fillContactForm(new ContactData("Ivan12","Pomidorov",
+
+        app. getContactHelper().createContact(new ContactData("Ivan11","Pomidorov",
                 "Minsk, Gagarina 21/14","+375 17 5544120",
                 "+375 29 6222552","test9"), true);
 
-        app.getContactHelper().submitContactCreation();
-        app.getContactHelper().returnToContactsPage();
-    }
+        }
+
+
+        //app.getContactHelper().fillContactForm(new ContactData("Ivan12","Pomidorov",
+        //        "Minsk, Gagarina 21/14","+375 17 5544120",
+        //        "+375 29 6222552","test9"), true);
+
+        //app.getContactHelper().submitContactCreation();
+        //app.getContactHelper().returnToContactsPage();
+    //}
 }
 
 

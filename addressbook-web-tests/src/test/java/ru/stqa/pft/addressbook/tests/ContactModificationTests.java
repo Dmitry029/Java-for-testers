@@ -12,6 +12,12 @@ public class ContactModificationTests extends TestBase {
   public void testContactModification(){
 
     app.getNavigationHelper().gotoHomePage();
+
+    if (! app.getContactHelper().isThereAContact()) {
+      app.getContactHelper().createContact(new ContactData("Ivan100", "Pomidorov",
+              "Minsk, Gagarina 21/14", "+375 17 5544120", "+375 29 6222552",
+              "test9"), true);
+    }
     app.getContactHelper().initModificationContact();
     app.getContactHelper().fillContactForm(new ContactData("Sasha1",
             "Pomidorov", "Minsk, Gagarina 21/14","+375 17 5544120",
