@@ -13,11 +13,11 @@ public class ContactDeletionTests extends TestBase {
   public void testContactDelation(){
 
     app.getNavigationHelper().gotoHomePage();
-//    if (! app.getContactHelper().isThereAContact()){
-//      app.getContactHelper().createContact(new ContactData("Ivan100","Pomidorov",
-//              "Minsk, Gagarina 21/14","+375 17 5544120", "+375 29 6222552",
-//              "test2"), true);
-//    }
+    if (! app.getContactHelper().isThereAContact()){
+      app.getContactHelper().createContact(new ContactData("Ivan100","Pomidorov",
+              "Minsk, Gagarina 21/14","+375 17 5544120", "+375 29 6222552",
+              "test2"), true);
+    }
 
     app.getContactHelper().selectContactDelation();
     app.getContactHelper().deleteContact();
