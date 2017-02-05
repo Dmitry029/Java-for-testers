@@ -20,8 +20,8 @@ public class ContactData {
     this.address = address;
     this.homephone = homephone;
     this.mobilephone = mobilephone;
-    this.group = group;
-    // Добавление группы в конструктор l3_m8. Убрал из скобок String group
+    this.group = group;    // Добавление группы в конструктор l3_m8. Убрал из скобок String group
+
   }
 
   public String getFirstname() {

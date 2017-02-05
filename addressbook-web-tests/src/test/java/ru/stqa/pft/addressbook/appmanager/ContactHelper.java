@@ -36,9 +36,11 @@ public class ContactHelper extends HelperBase {
 
     if (creation){
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-
+      //creation true для теста создания контакта. Тест увидит наличие нужного эл-та и выберет
+      //из выпадающего списка группу по имени. Тест для модиф контакта creation false перех на else
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
+      // Проверяем, что в форме нет элемента выбора группы. Контролируем отсутствие списка групп
     }
   }
 
@@ -47,7 +49,7 @@ public class ContactHelper extends HelperBase {
 
 
 
-// Для модификации контакта
+// Методы Для модификации контакта
   public void initModificationContact() {
     click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
@@ -59,7 +61,7 @@ public class ContactHelper extends HelperBase {
 
 
 
-// Для удаления контакта
+// Методы Для удаления контакта
   public void selectContactDelation() {
       click(By.xpath("//input[@type='checkbox']"));
   }

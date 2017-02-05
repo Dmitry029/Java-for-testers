@@ -29,7 +29,7 @@ public class HelperBase {
       }
     }
   }
-
+// Пока не используемый метод 3-е занятиек
   public boolean isAlertPresent() {
     try {
       wd.switchTo().alert();
@@ -38,7 +38,7 @@ public class HelperBase {
       return false;
     }
   }
-
+// Метод проверки наличия элемента на странице (согдасно локатора) l3_m8
   protected boolean isElementPresent(By locator) {
     try{
       wd.findElement(locator);
