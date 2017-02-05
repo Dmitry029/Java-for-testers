@@ -10,18 +10,18 @@ public class ContactData {
   private final String address;
   private final String homephone;
   private final String mobilephone;
-  //private String group;
+  private String group;
 
   public ContactData(String firstname, String lastname, String address,
-                     String homephone, String mobilephone
+                     String homephone, String mobilephone, String group
   ) {
     this.firstname = firstname;
     this.lastname = lastname;
     this.address = address;
     this.homephone = homephone;
     this.mobilephone = mobilephone;
-    //this.group = group;
-    // Добавление группы в конструктор l3_m8
+    this.group = group;
+    // Добавление группы в конструктор l3_m8. Убрал из скобок String group
   }
 
   public String getFirstname() {
@@ -44,7 +44,7 @@ public class ContactData {
     return mobilephone;
   }
 
- // public String getGroup() {    return group;  }
+  public String getGroup() {    return group;  }
 }
 
 

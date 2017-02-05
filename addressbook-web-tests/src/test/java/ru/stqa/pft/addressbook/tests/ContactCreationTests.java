@@ -10,8 +10,10 @@ public class ContactCreationTests extends TestBase{
 
         app.getNavigationHelper().gotoAddNewContact();
         app.getContactHelper().fillContactForm(new ContactData("Ivan12","Pomidorov",
-                "Minsk, Gagarina 21/14","+375 17 5544120", "+375 29 6222552"
-                ), true);
+                "Minsk, Gagarina 21/14","+375 17 5544120",
+                "+375 29 6222552","test9"), true);
+        // Для работы с группами, вместо null подставить номер группы
+
         app.getContactHelper().submitContactCreation();
         app.getContactHelper().returnToContactsPage();
     }
