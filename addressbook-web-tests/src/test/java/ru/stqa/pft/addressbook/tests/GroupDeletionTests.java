@@ -10,8 +10,9 @@ public class GroupDeletionTests extends TestBase{
     public void testGroupDeletion() {
 
         app.getNavigationHelper().gotoGtoupPage();
+        // Проверка того, что группа есть, а если нет - создаем ее и удаляем.
         if (! app.getGroupHelper().isThereAGroup()){
-            app.getGroupHelper().createGroup(new GroupData("test9", null, null));
+            app.getGroupHelper().createGroup(new GroupData("test8", null, null));
         }
 
         app.getGroupHelper().selectGroup();

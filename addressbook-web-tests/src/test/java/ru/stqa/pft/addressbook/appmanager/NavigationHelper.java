@@ -46,5 +46,4 @@ public class NavigationHelper extends HelperBase{
     click(By.linkText("add new"));      // click выполняется если мы еще не находитмя на странице
   }
 
-
 }

@@ -49,6 +49,8 @@ public class GroupHelper extends HelperBase{
     click(By.name("update"));
   }
 
+
+  //Создаеие группы
   public void createGroup(GroupData group) {
     initGroupCreation();
     fillGroupForm(group);
@@ -56,6 +58,7 @@ public class GroupHelper extends HelperBase{
     returnToGroupPage();
   }
 
+  //Проверка наличия группы
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
   }

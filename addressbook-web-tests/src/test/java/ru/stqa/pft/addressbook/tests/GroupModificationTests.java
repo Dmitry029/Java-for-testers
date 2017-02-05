@@ -13,6 +13,7 @@ public class GroupModificationTests extends TestBase {
   public void testGroupModification(){
 
     app.getNavigationHelper().gotoGtoupPage();
+    // Проверка существования группыю При отсутствии группы - создание.
     if (! app.getGroupHelper().isThereAGroup()){
         app.getGroupHelper().createGroup(new GroupData("test1", "test11", null));
     }
