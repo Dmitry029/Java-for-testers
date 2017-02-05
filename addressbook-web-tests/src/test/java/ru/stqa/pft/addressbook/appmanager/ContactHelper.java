@@ -63,7 +63,7 @@ public class ContactHelper extends HelperBase {
 
 // Методы Для удаления контакта
   public void selectContactDelation() {
-      click(By.xpath("//input[@type='checkbox']"));
+      click(By.xpath("//input[@type='checkbox'][1]"));
   }
 
   public void deleteContact() {
@@ -80,7 +80,8 @@ public class ContactHelper extends HelperBase {
   }
 // Проверка наличия контакта
   public boolean isThereAContact() {
-    return isElementPresent(By.xpath("//input[@type='checkbox']"));
+  //  return isElementPresent(By.xpath("//input[@type='checkbox'][1]"));
+    return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
 }
 

@@ -15,9 +15,11 @@ public class ContactDeletionTests extends TestBase {
     app.getNavigationHelper().gotoHomePage();
     //Проверка существования контакта. Иначе - создание и удаление
     if (! app.getContactHelper().isThereAContact()){
-      app.getContactHelper().createContact(new ContactData("Ivan100","Pomidorov",
-              "Minsk, Gagarina 21/14","+375 17 5544120", "+375 29 6222552",
-              "test2"), true);
+      app.getNavigationHelper().gotoAddNewContact();
+      app. getContactHelper().createContact(new ContactData("Ivan11","Pomidorov",
+              "Minsk, Gagarina 21/14","+375 17 5544120",
+              "+375 29 6222552","test9"), true);
+
     }
 
     app.getContactHelper().selectContactDelation();
