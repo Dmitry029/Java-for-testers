@@ -12,7 +12,7 @@ public class ContactCreationTests extends TestBase{
 
         app. getContactHelper().createContact(new ContactData("Ivan11","Pomidorov",
                 "Minsk, Gagarina 21/14","+375 17 5544120",
-                "+375 29 6222552","test9"), true);
+                "+375 29 6222552","test8"), true);
 
         }
 

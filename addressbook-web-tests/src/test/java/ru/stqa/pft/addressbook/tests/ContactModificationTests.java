@@ -14,13 +14,18 @@ public class ContactModificationTests extends TestBase {
     app.getNavigationHelper().gotoHomePage();
 
     if (! app.getContactHelper().isThereAContact()){
-//В случае отсутствия контакта, он создается.
+      // Проверка того, что группа есть, а если нет - она создается
+      app.getNavigationHelper().gotoGtoupPage();
+      if (! app.getGroupHelper().isThereAGroup()){
+        app.getGroupHelper().createGroup(new GroupData("test8", null, null));
+      }
+
+      //В случае отсутствия контакта, он создается.
       app.getNavigationHelper().gotoAddNewContact();
       app.getContactHelper().createContact(new ContactData("Ivan100","Pomidorov",
               "Minsk, Gagarina 21/14","+375 17 5544120", "+375 29 6222552",
-              "test9"), true);
+              "test8"), true);
     }
-
 
     app.getContactHelper().initModificationContact();
     app.getContactHelper().fillContactForm(new ContactData("Sasha1",
