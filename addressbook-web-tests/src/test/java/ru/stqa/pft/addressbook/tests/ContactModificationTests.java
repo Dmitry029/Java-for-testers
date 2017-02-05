@@ -14,6 +14,8 @@ public class ContactModificationTests extends TestBase {
     app.getNavigationHelper().gotoHomePage();
 
     if (! app.getContactHelper().isThereAContact()){
+//В случае отсутствия контакта, он создается.
+      app.getNavigationHelper().gotoAddNewContact();
       app.getContactHelper().createContact(new ContactData("Ivan100","Pomidorov",
               "Minsk, Gagarina 21/14","+375 17 5544120", "+375 29 6222552",
               "test9"), true);
@@ -22,7 +24,7 @@ public class ContactModificationTests extends TestBase {
 
     app.getContactHelper().initModificationContact();
     app.getContactHelper().fillContactForm(new ContactData("Sasha1",
-            "Pomidorov", "Minsk, Gagarina 21/14","+375 17 5544120",
+            "Pomidorov1", "Minsk, Gagarina 21/14","+375 17 5544120",
             "+375 29 6222552",null),false);
     app.getContactHelper().submitContactModification();
     app.getContactHelper().returnToContactsPage();
