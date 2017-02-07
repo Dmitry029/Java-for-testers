@@ -43,8 +43,9 @@ public class ApplicationMenager {
 
 
 
-    wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);//5-задержка для появления элемента
-    wd.get("http://localhost:8080/addressbook/group.php");
+    wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); //5-задержка для появления элемента
+   // wd.get("http://localhost:8080/addressbook/group.php");    //Приложение открывается на стр Groups
+    wd.get("http://localhost:8080/addressbook");                //Приложение открывается на главной
     contactHelper = new ContactHelper(wd);
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
