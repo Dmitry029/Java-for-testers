@@ -58,9 +58,15 @@ public class GroupHelper extends HelperBase{
     returnToGroupPage();
   }
 
-  //Проверка наличия группы
+  //Проверка наличия группы. Ищет чекбокс
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
+  }
+
+
+  // Подсчет колличества групп на странице Groups
+  public int getGroupCount() {
+    return wd.findElements(By.name("selected[]")).size();
   }
 }
 

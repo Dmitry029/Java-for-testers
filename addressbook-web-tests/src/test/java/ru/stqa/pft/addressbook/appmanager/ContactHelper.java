@@ -63,7 +63,8 @@ public class ContactHelper extends HelperBase {
 
 // Методы Для удаления контакта
   public void selectContactDelation() {
-      click(By.xpath("//input[@type='checkbox'][1]"));
+    //click(By.xpath("//input[@type='checkbox'][1]"));    // Локатор type альтернативный
+    click(By.name("selected[]"));                         // Локатор name
   }
 
   public void deleteContact() {
