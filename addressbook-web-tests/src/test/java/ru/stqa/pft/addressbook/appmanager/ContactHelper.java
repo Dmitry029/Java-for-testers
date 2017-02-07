@@ -64,12 +64,12 @@ public class ContactHelper extends HelperBase {
 // Методы Для удаления контакта
   public void selectContactDelation() {
     //click(By.xpath("//input[@type='checkbox'][1]"));    // Локатор type альтернативный
-    click(By.name("selected[]"));     // Локатор name
+    //wd.findElements(By.name("selected[]")).get(index).click(); // Локатор name
+    click(By.cssSelector("td.center"));
   }
 
-  public void deleteContact() {
-
-    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+    public void deleteContact() {
+    click(By.xpath("//div[@id='content']/form[2]/div[2]/input")); //локатор кнопки Delete (Selenium Builder)
     wd.switchTo().alert().accept();
   }
 
