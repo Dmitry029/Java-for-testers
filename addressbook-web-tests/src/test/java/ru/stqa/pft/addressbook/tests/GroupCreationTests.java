@@ -10,7 +10,7 @@ public class GroupCreationTests extends TestBase{
 
   @Test
   public void testGroupCreationTests() {
-    app.getNavigationHelper().gotoGtoupPage();
+    app.getNavigationHelper().gotoGtoupPage();           //Переход на стр Groups
     int before = app.getGroupHelper().getGroupCount();   //Подсчет групп до добавления
     app.getGroupHelper().createGroup(new GroupData("test8", null, null));
     int after = app.getGroupHelper().getGroupCount();    //Подсчет групп после добавления
