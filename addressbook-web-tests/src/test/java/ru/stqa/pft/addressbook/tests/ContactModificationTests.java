@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -26,13 +27,15 @@ public class ContactModificationTests extends TestBase {
               "Minsk, Gagarina 21/14","+375 17 5544120", "+375 29 6222552",
               "test8"), true);
     }
-
+    int before = app.getContactHelper(). getContactCount();
     app.getContactHelper().initModificationContact();
     app.getContactHelper().fillContactForm(new ContactData("Sasha1",
             "Pomidorov1", "Minsk, Gagarina 21/14","+375 17 5544120",
             "+375 29 6222552",null),false);
     app.getContactHelper().submitContactModification();
     app.getContactHelper().returnToContactsPage();
+    int after = app.getContactHelper(). getContactCount();
+    Assert.assertEquals(after, before);
   }
 
 }

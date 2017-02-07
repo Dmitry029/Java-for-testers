@@ -64,7 +64,7 @@ public class ContactHelper extends HelperBase {
 // Методы Для удаления контакта
   public void selectContactDelation() {
     //click(By.xpath("//input[@type='checkbox'][1]"));    // Локатор type альтернативный
-    click(By.name("selected[]"));                         // Локатор name
+    click(By.name("selected[]"));     // Локатор name
   }
 
   public void deleteContact() {
@@ -73,16 +73,25 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
+
 // Создание контакта
   public void createContact(ContactData contact, boolean creation ) {
     fillContactForm(contact, creation);
     submitContactCreation();
     returnToContactsPage();
   }
+
 // Проверка наличия контакта
   public boolean isThereAContact() {
   //  return isElementPresent(By.xpath("//input[@type='checkbox'][1]"));
     return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
+
+  //Подсчет контактов
+  public int getContactCount() {
+    return wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).size();
+  }
+
 }
 
+//click(By.name("entry"));
