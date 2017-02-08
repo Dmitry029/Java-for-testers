@@ -20,6 +20,7 @@ public class ContactModificationTests extends TestBase {
       if (! app.getGroupHelper().isThereAGroup()){
         app.getGroupHelper().createGroup(new GroupData("test8", null, null));
       }
+      // блок проверки наличия группы окончен
 
       //В случае отсутствия контакта, он создается.
       app.getNavigationHelper().gotoAddNewContact();
@@ -27,6 +28,7 @@ public class ContactModificationTests extends TestBase {
               "Minsk, Gagarina 21/14","+375 17 5544120", "+375 29 6222552",
               "test8"), true);
     }
+
     int before = app.getContactHelper(). getContactCount();
     app.getContactHelper().initModificationContact();
     app.getContactHelper().fillContactForm(new ContactData("Sasha1",

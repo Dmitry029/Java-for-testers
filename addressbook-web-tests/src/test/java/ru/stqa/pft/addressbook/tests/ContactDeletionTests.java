@@ -23,7 +23,7 @@ public class ContactDeletionTests extends TestBase {
     }
 
     int before = app.getContactHelper(). getContactCount();
-    app.getContactHelper().selectContactDelation();  // Выбор последнего эл-та (before -1)
+    app.getContactHelper().selectContactDelation(before -1);  // Выбор последнего эл-та (before -1)
     app.getContactHelper().deleteContact();
     app.getNavigationHelper().gotoHomePage();
     int after = app.getContactHelper(). getContactCount(); //Возврат на Home page
