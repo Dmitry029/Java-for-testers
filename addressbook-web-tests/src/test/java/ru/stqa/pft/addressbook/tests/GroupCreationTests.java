@@ -23,8 +23,3 @@ public class GroupCreationTests extends TestBase{
 
 
 
-// Вместо них createGroup
-// app.getGroupHelper().initGroupCreation();
-// app.getGroupHelper().fillGroupForm(new GroupData("test9", null, null));
-// app.getGroupHelper().submitGroupCreation();
-// app.getGroupHelper().returnToGroupPage();
