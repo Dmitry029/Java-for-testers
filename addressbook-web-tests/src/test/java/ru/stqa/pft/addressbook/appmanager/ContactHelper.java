@@ -65,7 +65,8 @@ public class ContactHelper extends HelperBase {
   public void selectContactDelation() {
     //click(By.xpath("//input[@type='checkbox'][1]"));    // Локатор type альтернативный
     //wd.findElements(By.name("selected[]")).get(index).click(); // Локатор name
-    click(By.cssSelector("td.center"));
+    //click(By.cssSelector("td.center"));
+    click(By.name("selected[]"));
   }
 
     public void deleteContact() {
@@ -89,7 +90,8 @@ public class ContactHelper extends HelperBase {
 
   //Подсчет контактов
   public int getContactCount() {
-    return wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).size();
+   // return wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).size();
+    return wd.findElements(By.name("selected[]")).size();
   }
 
 }

@@ -22,7 +22,8 @@ public class ContactDeletionTests extends TestBase {
               "+375 29 6222552","test8"), true);
 
     }
-    int before = app.getContactHelper().getContactCount();
+
+    int before = app.getContactHelper(). getContactCount();
     app.getContactHelper().selectContactDelation();  // Выбор последнего эл-та (before -1)
     app.getContactHelper().deleteContact();
     int after = app.getContactHelper(). getContactCount();
