@@ -20,13 +20,13 @@ public class ContactDeletionTests extends TestBase {
       app. getContactHelper().createContact(new ContactData("Ivan11","Pomidorov",
               "Minsk, Gagarina 21/14","+375 17 5544120",
               "+375 29 6222552","test8"), true);
-
     }
 
     int before = app.getContactHelper(). getContactCount();
     app.getContactHelper().selectContactDelation();  // Выбор последнего эл-та (before -1)
     app.getContactHelper().deleteContact();
-    int after = app.getContactHelper(). getContactCount();
+    app.getNavigationHelper().gotoHomePage();
+    int after = app.getContactHelper(). getContactCount(); //Возврат на Home page
     Assert.assertEquals(after, before - 1);
   }
 }

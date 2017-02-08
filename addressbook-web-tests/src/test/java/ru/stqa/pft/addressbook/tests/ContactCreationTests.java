@@ -13,7 +13,7 @@ public class ContactCreationTests extends TestBase {
     int before = app.getContactHelper().getContactCount();
     //блок подсчета окончен
     app.getNavigationHelper().gotoAddNewContact();       // Переход на стр создания контакта
-    app.getContactHelper().createContact(new ContactData("Ivan14", "Pomidorov",
+    app.getContactHelper().createContact(new ContactData("Ivan16", "Pomidorov",
             "Minsk, Gagarina 21/14", "+375 17 5544120",
             "+375 29 6222552", "test8"), true);
     int after = app.getContactHelper().getContactCount(); //Подсчет кол-ва контактов после создания
