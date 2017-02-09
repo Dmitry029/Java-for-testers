@@ -31,7 +31,7 @@ public class ContactModificationTests extends TestBase {
 
     int before = app.getContactHelper(). getContactCount();
     app.getContactHelper().initModificationContact(before - 1);
-    app.getContactHelper().fillContactForm(new ContactData("Sasha1",
+    app.getContactHelper().fillContactForm(new ContactData("Sasha21",
             "Pomidorov1", "Minsk, Gagarina 21/14","+375 17 5544120",
             "+375 29 6222552",null),false);
     app.getContactHelper().submitContactModification();

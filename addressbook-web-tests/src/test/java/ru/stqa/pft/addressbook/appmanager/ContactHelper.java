@@ -1,10 +1,8 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 //import org.apache.bcel.generic.Select;
-import org.openqa.selenium.By;
+import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import org.openqa.selenium.support.ui.Select;
@@ -49,10 +47,13 @@ public class ContactHelper extends HelperBase {
 
 
 
-// Методы Для модификации контакта
-  public void initModificationContact() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+// Методы Для модификации контакта*****************************************
+// click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+  public void initModificationContact(int index) {
+    wd.findElements(By.xpath("//tr[@name='entry']")).get(index).  //получение всех сторок, выбор строк по индексу
+    findElement(By.xpath(".//a[contains(@href,'edit')]")).click();  //выбор в строке элемента и click
   }
+//**************************************************************************
 
   public void submitContactModification()
   {
@@ -60,15 +61,14 @@ public class ContactHelper extends HelperBase {
   }
 
 
-
-// Методы Для удаления контакта
+// Методы Для удаления контакта. Другие локаторы****************************
   public void selectContactDelation(int index) {
     wd.findElements(By.name("selected[]")).get(index).click(); // Локатор name
     }
     //click(By.xpath("//input[@type='checkbox'][1]"));
     //click(By.cssSelector("td.center"));
     //click(By.name("selected[]"));
-
+//****************************************************************************
 
 
     public void deleteContact() {
@@ -86,16 +86,15 @@ public class ContactHelper extends HelperBase {
 
 // Проверка наличия контакта
   public boolean isThereAContact() {
-  //  return isElementPresent(By.xpath("//input[@type='checkbox'][1]"));
     return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
 
-  //Подсчет контактов
-  public int getContactCount() {
-   // return wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).size();
-    return wd.findElements(By.name("selected[]")).size();
-  }
+  //Подсчет контактов  и разные локаторы
+// return wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).size();
+// return wd.findElements(By.name("selected[]")).size();
 
+  public int getContactCount() {
+        return wd.findElements(By.xpath("//tr[@name='entry']")).size();
+  }
 }
 
-//click(By.name("entry"));
