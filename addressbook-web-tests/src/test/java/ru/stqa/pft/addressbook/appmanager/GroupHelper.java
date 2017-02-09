@@ -75,7 +75,7 @@ public class GroupHelper extends HelperBase{
   }
 
 
-   // Метод
+   // Метод заполнения списка данными
   public List<GroupData> getGroupList() {
     List<GroupData> groups = new ArrayList<GroupData>();       //Создание списка который будем заполнять
     // Извлечение данных для заполнения списка со страницы web приложения
