@@ -48,7 +48,6 @@ public class ContactModificationTests extends TestBase {
     before.remove(before.size() - 1);
     before.add(contact); // та же локальн пер (чтобы не писать два раза)
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));//сравнение 2-х МНОЖЕСТВ
-
   }
 }
 

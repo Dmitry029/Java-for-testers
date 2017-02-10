@@ -3,27 +3,28 @@ package ru.stqa.pft.addressbook.model;
 import org.testng.annotations.Test;
 
 public class GroupData {
-  private final String id;
+  private int  id; // Модификатор final означает что значение присваевоемое конструктором неизменно
   private final String name;
   private final String header;
   private final String footer;
 
   //Конструктор без id Группа с неизвестным идентификатором
   public GroupData( String name, String header, String footer) {
-    this.id = null;
+    this.id = 0;
     this.name = name;
     this.header = header;
     this.footer = footer;
+
   }
 
   //Конструктор
-  public GroupData(String id, String name, String header, String footer) {
+  public GroupData(int id, String name, String header, String footer) {
     this.id = id;   //присвоение значения параметра в атрибут
     this.name = name;
     this.header = header;
     this.footer = footer;
   }
-  public String getId() { return id;  }
+  public int getId() { return id;  }
   public String getName() {
     return name;
   }
@@ -34,6 +35,7 @@ public class GroupData {
     return footer;
   }
 
+  public void setId(int id) { this.id = id;  }
 
   @Override
   public boolean equals(Object o) {
@@ -42,13 +44,13 @@ public class GroupData {
 
     GroupData groupData = (GroupData) o;
 
-    if (id != null ? !id.equals(groupData.id) : groupData.id != null) return false;
+    if (id != groupData.id) return false;
     return name != null ? name.equals(groupData.name) : groupData.name == null;
   }
 
   @Override
   public int hashCode() {
-    int result = id != null ? id.hashCode() : 0;
+    int result = id;
     result = 31 * result + (name != null ? name.hashCode() : 0);
     return result;
   }
