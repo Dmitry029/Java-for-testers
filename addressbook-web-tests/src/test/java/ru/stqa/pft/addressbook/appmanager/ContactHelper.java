@@ -110,7 +110,8 @@ public class ContactHelper extends HelperBase {
       String firstname = element.findElement(By.xpath(".//td[3]")).getText(); //выбор имени 3- я колонка!!!
       String lastname = element.findElement(By.xpath(".//td[2]")).getText();
 
-      String id = element.findElement(By.tagName("input")).getAttribute("value");// полученин id
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      // полученин id
 
       ContactData contact = new ContactData(id,firstname, lastname, null,
                              null, null, null );
