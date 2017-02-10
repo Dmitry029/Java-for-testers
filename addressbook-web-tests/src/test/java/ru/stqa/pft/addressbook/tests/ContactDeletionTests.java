@@ -29,11 +29,11 @@ public class ContactDeletionTests extends TestBase {
     app.getContactHelper().deleteContact();
     app.getNavigationHelper().gotoHomePage();//Возврат на Home page
     List<ContactData> after = app.getContactHelper().getContactList();
-    Assert.assertEquals(after.size(), before.size() - 1);
+    Assert.assertEquals(after.size(), before.size() - 1); // Сравнение размеров списка
 
     before.remove(before.size() - 1);
-    Assert.assertEquals(before,after); //Сравнение списков
-    }
+    Assert.assertEquals(before,after); //Сравнение списков целиком поэлементно
+  }
 }
 
 
