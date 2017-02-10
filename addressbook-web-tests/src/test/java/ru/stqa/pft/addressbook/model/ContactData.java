@@ -17,7 +17,7 @@ public class ContactData {
   public ContactData(String firstname, String lastname, String address,
                      String homephone, String mobilephone, String group
   ) {
-    this.id = 0; //присвоение параметра в атрибут l4_m8
+    this.id = Integer.MAX_VALUE; //присвоение параметра в атрибут l4_m8
     this.firstname = firstname;
     this.lastname = lastname;
     this.address = address;
