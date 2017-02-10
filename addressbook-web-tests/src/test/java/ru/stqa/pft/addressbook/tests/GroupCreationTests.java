@@ -22,7 +22,7 @@ public class GroupCreationTests extends TestBase{
     List<GroupData> after = app. getGroupHelper(). getGroupList();  //Подсчет групп после добавления
     Assert.assertEquals(after.size(), before.size() + 1);   // Проверка кол-ва групп до и после создания
 
-    //ищем элемент с максимальный идентификатор. это - идентификатор новой группы
+    //ищем элемент с максимальный идентификатор. это - идентификатор новой группы l4_m9
     group.setId(after.stream().max((o1,o2)-> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(group);
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));//сравнение 2-х МНОЖЕСТВ
