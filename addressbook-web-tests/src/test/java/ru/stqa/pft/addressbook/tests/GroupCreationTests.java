@@ -15,7 +15,7 @@ public class GroupCreationTests extends TestBase{
   public void testGroupCreationTests() {
     app.goTo().groupPage();     //Переход на стр Groups
     List<GroupData> before = app.group().list(); //Подсчет групп до добавления
-    GroupData group = new GroupData("test2", null, null);//данные для создания группы
+    GroupData group = new GroupData().withName("test2");//данные для создания группы
     app.group().create(group);//создаем группу
     List<GroupData> after = app.group().list();  //Подсчет групп после добавления
     Assert.assertEquals(after.size(), before.size() + 1);   // Проверка кол-ва групп до и после создания
