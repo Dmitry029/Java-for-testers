@@ -8,7 +8,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Администратор on 28.01.2017.
@@ -91,8 +93,7 @@ public class GroupHelper extends HelperBase{
     return wd.findElements(By.name("selected[]")).size();
   }
 
-
-   // Метод заполнения списка данными
+  // Метод заполнения списка данными
   public List<GroupData> list() {
     List<GroupData> groups = new ArrayList<GroupData>();       //Создание списка который будем заполнять
     // Извлечение данных для заполнения списка со страницы web приложения
@@ -101,6 +102,19 @@ public class GroupHelper extends HelperBase{
       String name = element.getText();          // из каждого элемента получаем текст - имя группы
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));//ПОЛУЧЕНИЕ ИДЕНТИФИКАТОРА ID затем он передается в конструктор
       groups.add(new GroupData().withId(id).withName(name));                        // Добавляем созданный объект в список
+    }
+    return groups;
+  }
+
+   // Метод заполнения списка данными
+  public Set<GroupData> all() {
+    Set<GroupData> groups = new HashSet<GroupData>();       //Создание списка который будем заполнять
+    // Извлечение данных для заполнения списка со страницы web приложения
+    List<WebElement> elements = wd.findElements(By.cssSelector("span.group")); //найти все элементы с тегом span и класс groupИзвле
+    for (WebElement element : elements){        //element пробегает по списку elements
+      String name = element.getText();          // из каждого элемента получаем текст - имя группы
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));//ПОЛУЧЕНИЕ ИДЕНТИФИКАТОРА ID затем он передается в конструктор
+      groups.add(new GroupData().withId(id).withName(name));                        // Добавляем созданный объект в МНОЖЕСТВО
     }
     return groups;
   }

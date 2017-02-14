@@ -12,10 +12,12 @@ public class Groups extends ForwardingSet<GroupData> {
 
   private Set<GroupData> delegate;
 
+    // Конструктор
   public Groups(Groups groups) {
     this.delegate = new HashSet<GroupData>(groups.delegate);
   }
 
+  // Это конструктор с 0 значением
   public Groups() {
     this.delegate = new HashSet<GroupData>();
   }
@@ -25,9 +27,9 @@ public class Groups extends ForwardingSet<GroupData> {
     return delegate;
   }
 
-  //Копия куда добавили группу
+  //Копия куда (в groups) добавили группу
   public Groups withAdded(GroupData group){
-    Groups groups = new Groups(this);
+    Groups groups = new Groups(this);//создаем копию существующего объекта
     groups.add(group); //добавляем новую группу
     return groups;
   }
