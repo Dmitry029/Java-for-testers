@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class ContactDeletionTests extends TestBase {
 
-  @Test
+  @Test                                     //(enabled = false) выключение теста
   public void testContactDelation(){
 
     app.getNavigationHelper().gotoHomePage();

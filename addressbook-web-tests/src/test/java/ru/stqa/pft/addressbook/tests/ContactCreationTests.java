@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
-  @Test
+  @Test                                           //(enabled = false) выкл теста
   public void testContactCreation() {
     //Подсчет кол-ва контактов до создания нового**************************************************
     app.getNavigationHelper().gotoHomePage(); //Переход на домашнюю страницу***********************
@@ -37,7 +37,7 @@ public class ContactCreationTests extends TestBase {
   }
 }
 
-//ищем элемент с максимальный идентификатор. это - идентификатор новой группы l4_m9
-// contact.setId(after.stream().max((o1,o2)-> Integer.compare(o1.getId(), o2.getId())).get().getId());
-// before.add(contact); // та же локальн пер (чтобы не писать два раза)
-// Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));//сравнение 2-х МНОЖЕСТВ
+/*ищем элемент с максимальный идентификатор. это - идентификатор новой группы l4_m9
+* contact.setId(after.stream().max((o1,o2)-> Integer.compare(o1.getId(), o2.getId())).get().getId());
+* before.add(contact); // та же локальн пер (чтобы не писать два раза)
+* Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));//сравнение 2-х МНОЖЕСТВ */

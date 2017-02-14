@@ -13,7 +13,9 @@ import java.util.List;
  * Created by Администратор on 29.01.2017.
  */
 public class ContactModificationTests extends TestBase {
-  @Test
+
+  @Test                             //(enabled = false) выкл теста
+
   public void testContactModification(){
 
     app.getNavigationHelper().gotoHomePage();
