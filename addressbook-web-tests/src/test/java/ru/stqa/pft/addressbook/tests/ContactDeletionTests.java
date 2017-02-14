@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -12,9 +13,8 @@ import java.util.List;
  */
 public class ContactDeletionTests extends TestBase {
 
-  @Test                                     //(enabled = false) выключение теста
-  public void testContactDelation(){
-
+  @BeforeMethod
+  public void ensurePreconditions() {
     app.getNavigationHelper().gotoHomePage();
     //Проверка существования контакта. Иначе - создание и удаление*********************************
     if (! app.getContactHelper().isThereAContact()){
@@ -24,14 +24,20 @@ public class ContactDeletionTests extends TestBase {
               "+375 29 6222552","test8"), true);
     }
     //*********************************************************************************************
+  }
+
+  @Test                                     //(enabled = false) выключение теста
+  public void testContactDelation(){
+
     List<ContactData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().selectContactDelation(before.size() -1);  // Выбор последнего эл-та (before -1)
+    int index = before.size() -1;//индекс контакта, который будем удалять
+    app.getContactHelper().selectContactDelation(index);  // Выбор последнего эл-та (before -1)
     app.getContactHelper().deleteContact();
     app.getNavigationHelper().gotoHomePage();//Возврат на Home page
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() - 1); // Сравнение размеров списка
 
-    before.remove(before.size() - 1);
+    before.remove(index);
     Assert.assertEquals(before,after); //Сравнение списков целиком поэлементно
   }
 }

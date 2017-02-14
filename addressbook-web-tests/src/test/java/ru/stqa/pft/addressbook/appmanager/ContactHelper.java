@@ -88,6 +88,13 @@ public class ContactHelper extends HelperBase {
     returnToContactsPage();
   }
 //******************************************************************************************************
+// Модификация контакта*********************************************************************************
+  public void modifyContact(ContactData contact) {
+    fillContactForm(contact,false);
+    submitContactModification();
+    returnToContactsPage();
+  }
+//******************************************************************************************************
 
 // Проверка наличия контакта****************************************************************************
   public boolean isThereAContact() {

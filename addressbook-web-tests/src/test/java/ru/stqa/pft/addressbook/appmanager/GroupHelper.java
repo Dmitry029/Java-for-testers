@@ -62,7 +62,14 @@ public class GroupHelper extends HelperBase{
     submitGroupCreation();
     returnToGroupPage();
   }
-
+  //Модификация группы
+  public void modifyGroup(int index, GroupData group) {
+    selectGroup(index);
+    initGroupModification();
+    fillGroupForm(group);// заполняет форму
+    submitGroupModification();
+    returnToGroupPage();
+  }
   //Проверка наличия группы. Ищет чекбокс
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
