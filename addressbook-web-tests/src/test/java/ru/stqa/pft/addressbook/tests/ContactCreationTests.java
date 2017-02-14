@@ -3,10 +3,8 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class ContactCreationTests extends TestBase {
@@ -14,10 +12,10 @@ public class ContactCreationTests extends TestBase {
   @Test                                           //(enabled = false) выкл теста
   public void testContactCreation() {
     //Подсчет кол-ва контактов до создания нового**************************************************
-    app.getNavigationHelper().gotoHomePage(); //Переход на домашнюю страницу***********************
+    app.goTo().gotoHomePage(); //Переход на домашнюю страницу***********************
     List<ContactData> before = app.getContactHelper().getContactList(); //before - список объектов*
     //блок подсчета окончен************************************************************************
-    app.getNavigationHelper().gotoAddNewContact();// Переход на стр создания контакта
+    app.goTo().gotoAddNewContact();// Переход на стр создания контакта
 
     ContactData contact = new ContactData("Sasha1",
             "Pomidorov1", "Minsk, Gagarina 21/14","+375 17 5544120",

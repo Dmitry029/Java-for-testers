@@ -55,10 +55,10 @@ public class ApplicationMenager {
 
   public void stop() { wd.quit();  }
 
-  public GroupHelper getGroupHelper() { return groupHelper;  }
+  public GroupHelper group() { return groupHelper;  }
 
   public ContactHelper getContactHelper() { return contactHelper;  }
 
-  public NavigationHelper getNavigationHelper() {return navigationHelper; }
+  public NavigationHelper goTo() {return navigationHelper; }
 
 }

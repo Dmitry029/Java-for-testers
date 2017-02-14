@@ -56,20 +56,30 @@ public class GroupHelper extends HelperBase{
 
 
   //Создаеие группы
-  public void createGroup(GroupData group) {
+  public void create(GroupData group) {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
     returnToGroupPage();
   }
   //Модификация группы
-  public void modifyGroup(int index, GroupData group) {
+  public void modify(int index, GroupData group) {
     selectGroup(index);
     initGroupModification();
     fillGroupForm(group);// заполняет форму
     submitGroupModification();
     returnToGroupPage();
   }
+  //Удаление группы
+  public void delete(int index) {
+    selectGroup(index);
+    deleteSelectedGroups();
+    returnToGroupPage();
+  }
+
+
+
+
   //Проверка наличия группы. Ищет чекбокс
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
@@ -83,7 +93,7 @@ public class GroupHelper extends HelperBase{
 
 
    // Метод заполнения списка данными
-  public List<GroupData> getGroupList() {
+  public List<GroupData> list() {
     List<GroupData> groups = new ArrayList<GroupData>();       //Создание списка который будем заполнять
     // Извлечение данных для заполнения списка со страницы web приложения
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group")); //найти все элементы с тегом span и класс groupИзвле

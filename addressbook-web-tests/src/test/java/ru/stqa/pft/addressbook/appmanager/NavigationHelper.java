@@ -15,7 +15,7 @@ public class NavigationHelper extends HelperBase{
   }
 
 
-  public void gotoGtoupPage() {
+  public void groupPage() {
     if (isElementPresent(By.tagName("h1"))  // l3_ m9 Проверка - находимся ли мы на странице Groups
             // элемент(заголовок) h1 присутствует и его текст совпадает с заданным
             && wd.findElement(By.tagName("h1")).getText().equals("Groups")  //по заголовку  Groups

@@ -7,7 +7,6 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -17,18 +16,18 @@ public class ContactModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
 
     if (! app.getContactHelper().isThereAContact()){
       // Проверка того, что группа есть, а если нет - она создается **********
-      app.getNavigationHelper().gotoGtoupPage();
-      if (! app.getGroupHelper().isThereAGroup()){
-        app.getGroupHelper().createGroup(new GroupData("test8", null, null));
+      app.goTo().groupPage();
+      if (app.group().list().size() == 0){
+        app.group().create(new GroupData("test8", null, null));
       }
       // блок проверки наличия группы окончен ********************************
 
       //В случае отсутствия контакта, он создается. ***************************
-      app.getNavigationHelper().gotoAddNewContact();
+      app.goTo().gotoAddNewContact();
       app.getContactHelper().createContact(new ContactData("Ivan100","Pomidorov",
               "Minsk, Gagarina 21/14","+375 17 5544120", "+375 29 6222552",
               "test8"), true);
