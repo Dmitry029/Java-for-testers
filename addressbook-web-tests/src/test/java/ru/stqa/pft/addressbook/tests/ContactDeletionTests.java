@@ -18,14 +18,14 @@ public class ContactDeletionTests extends TestBase {
     //Проверка существования контакта. Иначе - создание и удаление*********************************
     if (app.contact().list().size() == 0){
       app.goTo().addNew();
-      app. contact().create(new ContactData("Ivan11","Pomidorov",
-              "Minsk, Gagarina 21/14","+375 17 5544120",
-              "+375 29 6222552","test8"), true);
+      app. contact().create(new ContactData().withFirstname("Ivan11").withLastname("Pomidorov")
+              .withAddress("Minsk, Gagarina 21/14").withHomephone("+375 17 5544120")
+              .withMobilephone("+375 29 6222552").withGroup("test8"), true);
     }
     //*********************************************************************************************
   }
 
-  @Test                                     //(enabled = false) выключение теста
+  @Test
   public void testContactDelation(){
 
     List<ContactData> before = app.contact().list();

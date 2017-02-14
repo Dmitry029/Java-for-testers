@@ -28,9 +28,9 @@ public class ContactModificationTests extends TestBase {
 
       //В случае отсутствия контакта, он создается. ***************************
       app.goTo().addNew();
-      app.contact().create(new ContactData("Ivan100","Pomidorov",
-              "Minsk, Gagarina 21/14","+375 17 5544120", "+375 29 6222552",
-              "test8"), true);
+      app.contact().create(new ContactData().withFirstname("Ivan100").withLastname("Pomidorov")
+                .withAddress("Minsk, Gagarina 21/14").withHomephone("+375 17 5544120")
+                .withMobilephone("+375 29 6222552").withGroup("test8"), true);
     }
     //*************************************************************************
   }
@@ -45,9 +45,9 @@ public class ContactModificationTests extends TestBase {
     app.contact().initModificationContact(index); //выбираем последний элемент
 
     // новая локальная переменная contact. заполняет контакт. l4_m7
-    ContactData contact = new ContactData(before.get(index).getId(),"Sasha2",
-            "Pomidorov1", "Minsk, Gagarina 21/14","+375 17 5544120",
-            "+375 29 6222552",null);
+    ContactData contact = new ContactData().withId(before.get(index).getId()).withFirstname("Sasha2")
+            .withLastname("Pomidorov1").withAddress("Minsk, Gagarina 21/14").withHomephone("+375 17 5544120")
+            .withMobilephone("+375 29 6222552");//group null
 
     app.contact().modify(contact);
 

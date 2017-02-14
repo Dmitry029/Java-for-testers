@@ -16,9 +16,9 @@ public class ContactCreationTests extends TestBase {
     List<ContactData> before = app.contact().list(); //before - список объектов*
     app.goTo().addNew();// Переход на стр создания контакта
 
-    ContactData contact = new ContactData("Sasha1",
-            "Pomidorov1", "Minsk, Gagarina 21/14","+375 17 5544120",
-            "+375 29 6222552","test2");
+    ContactData contact = new ContactData().withFirstname("Sasha1").withLastname("Pomidorov1")
+            .withAddress("Minsk, Gagarina 21/14").withHomephone("+375 17 5544120")
+            .withMobilephone("+375 29 6222552").withGroup("test2");
 
     app.contact().create(contact, true); //создаем контакт
 

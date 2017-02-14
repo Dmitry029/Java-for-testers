@@ -5,42 +5,51 @@ package ru.stqa.pft.addressbook.model;
  */
 public class ContactData {
 
-  private int id;
-  private final String firstname;
-  private final String lastname;
-  private final String address;
-  private final String homephone;
-  private final String mobilephone;
+  private int id = Integer.MAX_VALUE;
+  private String firstname;
+  private String lastname;
+  private String address;
+  private String homephone;
+  private String mobilephone;
   private String group;
 
-  //второй конструктор дез id   l4_m8
-  public ContactData(String firstname, String lastname, String address,
-                     String homephone, String mobilephone, String group
-  ) {
-    this.id = Integer.MAX_VALUE; //присвоение параметра в атрибут l4_m8
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.address = address;
-    this.homephone = homephone;
-    this.mobilephone = mobilephone;
-    this.group = group;    // Добавление группы в конструктор l3_m8. Убрал из скобок String group
 
+  public ContactData withId(int id) {
+    this.id = id;
+    return this;
   }
 
-  public ContactData(int id,String firstname, String lastname, String address,
-                     String homephone, String mobilephone, String group
-  ) {
-    this.id = id; //присвоение параметра в атрибут
+  public ContactData withFirstname(String firstname) {
     this.firstname = firstname;
-    this.lastname = lastname;
-    this.address = address;
-    this.homephone = homephone;
-    this.mobilephone = mobilephone;
-    this.group = group;    // Добавление группы в конструктор l3_m8. Убрал из скобок String group
-
+    return this;
   }
 
-  public void setId(int id) {    this.id = id;  }
+  public ContactData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withHomephone(String homephone) {
+    this.homephone = homephone;
+    return this;
+  }
+
+  public ContactData withMobilephone(String mobilephone) {
+    this.mobilephone = mobilephone;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
+
   public int getId() {return id;  }
   public String getFirstname() {
     return firstname;
@@ -89,6 +98,31 @@ public class ContactData {
 
 
 
+/* //второй конструктор дез id   l4_m8
+  public ContactData(String firstname, String lastname, String address,
+                     String homephone, String mobilephone, String group
+  ) {
+    this.id = Integer.MAX_VALUE; //присвоение параметра в атрибут l4_m8
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.address = address;
+    this.homephone = homephone;
+    this.mobilephone = mobilephone;
+    this.group = group;    // Добавление группы в конструктор l3_m8. Убрал из скобок String group
 
+  }
+
+  public ContactData(int id,String firstname, String lastname, String address,
+                     String homephone, String mobilephone, String group
+  ) {
+    this.id = id; //присвоение параметра в атрибут
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.address = address;
+    this.homephone = homephone;
+    this.mobilephone = mobilephone;
+    this.group = group;    // Добавление группы в конструктор l3_m8. Убрал из скобок String group
+
+  }*/
 
 
