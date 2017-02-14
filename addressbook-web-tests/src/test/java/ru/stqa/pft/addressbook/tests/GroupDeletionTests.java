@@ -4,8 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
-
-import java.util.List;
+import java.util.Set;
 
 public class GroupDeletionTests extends TestBase{
     @BeforeMethod  //Перед каждым вызовом   - проверка предусловий i5_m2
@@ -13,7 +12,7 @@ public class GroupDeletionTests extends TestBase{
         app.goTo().groupPage();
 
         // Проверка того, что группа есть, а если нет - создаем ее и удаляем.**********************
-        if (app.group().list().size() == 0) {
+        if (app.group().all().size() == 0) {
             app.group().create(new GroupData().withName("test1"));
         }
         //******************************************************************************************
@@ -22,13 +21,13 @@ public class GroupDeletionTests extends TestBase{
     @Test
     public void testGroupDeletion() {
 
-        List<GroupData> before = app.group().list(); //Подсчет групп  до удаления
-        int index = before.size() -1;//индекс группы, которую будем удалять
-        app.group().delete(index);
-        List<GroupData> after = app.group().list();  //Подсчет групп после удаления
+        Set<GroupData> before = app.group().all(); //Подсчет групп  до удаления
+        GroupData deletedGroup = before.iterator().next();
+        app.group().delete(deletedGroup);// для удаления передаем группу целиком ВЫБРАНА СЛУЧАЙНЫМ ОБРАЗОМ
+        Set<GroupData> after = app.group().all();  //Подсчет групп после удаления
         Assert.assertEquals(after.size(), before.size() - 1);  // Проверка кол-ва групп до и после удаления    }
 
-        before.remove(index);
+        before.remove(deletedGroup);
         Assert.assertEquals(before, after);  //сравниваем по элементно списки
      }
 }

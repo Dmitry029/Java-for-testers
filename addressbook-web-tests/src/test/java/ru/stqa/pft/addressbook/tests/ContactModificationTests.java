@@ -21,7 +21,7 @@ public class ContactModificationTests extends TestBase {
     if (app.contact().list().size() == 0){
       // Проверка того, что группа есть, а если нет - она создается **********
       app.goTo().groupPage();
-      if (app.group().list().size() == 0){
+      if (app.group().all().size() == 0){
         app.group().create(new GroupData().withName("test8"));
       }
       // блок проверки наличия группы окончен ********************************
