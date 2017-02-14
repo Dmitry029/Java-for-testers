@@ -57,7 +57,7 @@ public class ApplicationMenager {
 
   public GroupHelper group() { return groupHelper;  }
 
-  public ContactHelper getContactHelper() { return contactHelper;  }
+  public ContactHelper contact() { return contactHelper;  }
 
   public NavigationHelper goTo() {return navigationHelper; }
 

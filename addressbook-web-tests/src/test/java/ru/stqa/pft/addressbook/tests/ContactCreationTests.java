@@ -12,18 +12,17 @@ public class ContactCreationTests extends TestBase {
   @Test                                           //(enabled = false) выкл теста
   public void testContactCreation() {
     //Подсчет кол-ва контактов до создания нового**************************************************
-    app.goTo().gotoHomePage(); //Переход на домашнюю страницу***********************
-    List<ContactData> before = app.getContactHelper().getContactList(); //before - список объектов*
-    //блок подсчета окончен************************************************************************
-    app.goTo().gotoAddNewContact();// Переход на стр создания контакта
+    app.goTo().homePage(); //Переход на домашнюю страницу***********************
+    List<ContactData> before = app.contact().list(); //before - список объектов*
+    app.goTo().addNew();// Переход на стр создания контакта
 
     ContactData contact = new ContactData("Sasha1",
             "Pomidorov1", "Minsk, Gagarina 21/14","+375 17 5544120",
             "+375 29 6222552","test2");
 
-    app.getContactHelper().createContact(contact, true); //создаем контакт
+    app.contact().create(contact, true); //создаем контакт
 
-    List<ContactData> after = app.getContactHelper().getContactList(); //after - список объектов после добавления
+    List<ContactData> after = app.contact().list(); //after - список объектов после добавления
     Assert.assertEquals(after.size(), before.size() + 1);     // Сравнение результатов
 
     before.add(contact); // та же локальн пер (чтобы не писать два раза)

@@ -16,9 +16,9 @@ public class ContactModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
-    app.goTo().gotoHomePage();
+    app.goTo().homePage();
 
-    if (! app.getContactHelper().isThereAContact()){
+    if (app.contact().list().size() == 0){
       // Проверка того, что группа есть, а если нет - она создается **********
       app.goTo().groupPage();
       if (app.group().list().size() == 0){
@@ -27,8 +27,8 @@ public class ContactModificationTests extends TestBase {
       // блок проверки наличия группы окончен ********************************
 
       //В случае отсутствия контакта, он создается. ***************************
-      app.goTo().gotoAddNewContact();
-      app.getContactHelper().createContact(new ContactData("Ivan100","Pomidorov",
+      app.goTo().addNew();
+      app.contact().create(new ContactData("Ivan100","Pomidorov",
               "Minsk, Gagarina 21/14","+375 17 5544120", "+375 29 6222552",
               "test8"), true);
     }
@@ -40,18 +40,18 @@ public class ContactModificationTests extends TestBase {
 
   public void testContactModification(){
 
-    List<ContactData> before = app.getContactHelper().getContactList(); // before - список контактов
+    List<ContactData> before = app.contact().list(); // before - список контактов
     int index = before.size() -1; //индекс контакта, который будем модифицировать
-    app.getContactHelper().initModificationContact(index); //выбираем последний элемент
+    app.contact().initModificationContact(index); //выбираем последний элемент
 
     // новая локальная переменная contact. заполняет контакт. l4_m7
     ContactData contact = new ContactData(before.get(index).getId(),"Sasha2",
             "Pomidorov1", "Minsk, Gagarina 21/14","+375 17 5544120",
             "+375 29 6222552",null);
 
-    app.getContactHelper().modifyContact(contact);
+    app.contact().modify(contact);
 
-    List<ContactData> after = app.getContactHelper().getContactList();
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size()); //проверка размера контакта до и после модиф
 
     before.remove(index);

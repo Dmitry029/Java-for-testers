@@ -27,7 +27,7 @@ public class NavigationHelper extends HelperBase{
 
 
 
-  public void gotoHomePage() {
+  public void homePage() {
     if (isElementPresent(By.id("maintable"))){   // Проверка - находимся ли мы на странице Home
       return;                                    // по элементу Таблица
     }
@@ -36,7 +36,7 @@ public class NavigationHelper extends HelperBase{
 
 
 
-  public void gotoAddNewContact() {
+  public void addNew() {
     if (isElementPresent(By.tagName("h1"))   // Проверка - находимся ли мы на странице Add new
             && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
             && isElementPresent(By.name("submit"))) {

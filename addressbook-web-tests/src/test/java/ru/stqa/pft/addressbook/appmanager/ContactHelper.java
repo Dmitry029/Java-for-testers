@@ -2,15 +2,12 @@ package ru.stqa.pft.addressbook.appmanager;
 
 //import org.apache.bcel.generic.Select;
 import org.openqa.selenium.*;
-import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.testng.Assert.*;
 
 /**
  * Created by Администратор on 29.01.2017.
@@ -21,11 +18,15 @@ public class ContactHelper extends HelperBase {
     super(wd);
   }
 
-
-  public void returnToContactsPage() {
-    wd.findElement(By.linkText("home page")).click();
+  //Возврат на стр контактов из модификации контакта
+  public void returnToHomePage() {
+    wd.findElement(By.linkText("home page")).click();//
   }
 
+  //Возврат на стр контактов при удалении контакта. Через верхнее меню
+  public void returnToHomePage2() {
+    wd.findElement(By.linkText("home")).click();
+  }
 
 //Заполнение формы контакта*******************************************************************
   public void fillContactForm(ContactData contactData, boolean creation) {
@@ -82,19 +83,30 @@ public class ContactHelper extends HelperBase {
 //*****************************************************************************************************
 
 // Создание контакта***********************************************************************************
-  public void createContact(ContactData contact, boolean creation ) {
+  public void create(ContactData contact, boolean creation ) {
     fillContactForm(contact, creation);
     submitContactCreation();
-    returnToContactsPage();
+    returnToHomePage();
   }
 //******************************************************************************************************
 // Модификация контакта*********************************************************************************
-  public void modifyContact(ContactData contact) {
+  public void modify(ContactData contact) {
     fillContactForm(contact,false);
     submitContactModification();
-    returnToContactsPage();
+    returnToHomePage();
   }
 //******************************************************************************************************
+// Удаление контакта************************************************************************************
+   public void delete(int index) {
+     selectContactDelation(index);  // Выбор последнего эл-та (before -1)
+     deleteContact();
+     returnToHomePage2();//Возврат на Home page
+}
+  /*private void delete(int index) {
+    app.contact().selectContactDelation(index);  // Выбор последнего эл-та (before -1)
+    app.contact().deleteContact();
+    app.goTo().homePage();//Возврат на Home page
+  }*/
 
 // Проверка наличия контакта****************************************************************************
   public boolean isThereAContact() {
@@ -110,7 +122,7 @@ public class ContactHelper extends HelperBase {
   }
 //*******************************************************************************************************
 //Метод создания списка контактов************************************************************************
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
     for (WebElement element : elements){
