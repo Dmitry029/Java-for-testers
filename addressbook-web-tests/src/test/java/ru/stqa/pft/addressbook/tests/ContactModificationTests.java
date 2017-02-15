@@ -42,14 +42,13 @@ public class ContactModificationTests extends TestBase {
 
     List<ContactData> before = app.contact().list(); // before - список контактов
     int index = before.size() -1; //индекс контакта, который будем модифицировать
-    app.contact().initModificationContact(index); //выбираем последний элемент
 
     // новая локальная переменная contact. заполняет контакт. l4_m7
     ContactData contact = new ContactData().withId(before.get(index).getId()).withFirstname("Sasha2")
             .withLastname("Pomidorov1").withAddress("Minsk, Gagarina 21/14").withHomephone("+375 17 5544120")
             .withMobilephone("+375 29 6222552");//group null
 
-    app.contact().modify(contact);
+    app.contact().modify(index,contact);
 
     List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size()); //проверка размера контакта до и после модиф

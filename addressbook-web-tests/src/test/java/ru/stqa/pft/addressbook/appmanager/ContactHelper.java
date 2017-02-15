@@ -98,7 +98,8 @@ public class ContactHelper extends HelperBase {
   }
 //******************************************************************************************************
 // Модификация контакта*********************************************************************************
-  public void modify(ContactData contact) {
+  public void modify(int index, ContactData contact) {
+    initModificationContact(index);
     fillContactForm(contact,false);
     submitContactModification();
     returnToHomePage();

@@ -30,13 +30,13 @@ public class ContactDeletionTests extends TestBase {
   public void testContactDelation(){
 
     Set<ContactData> before = app.contact().all();
-    ContactData deletedContact = before.iterator().next();
+    ContactData deletedContact = before.iterator().next(); //элемент для удаления выбирается случайным образом
     app.contact().delete(deletedContact);
     Set<ContactData> after = app.contact().all();
     Assert.assertEquals(after.size(), before.size() - 1); // Сравнение размеров списка
 
     before.remove(deletedContact);
-    Assert.assertEquals(before,after); //Сравнение списков целиком поэлементно
+    Assert.assertEquals(before,after); //Сравнение массивов целиком поэлементно
   }
 
 
