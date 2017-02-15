@@ -31,7 +31,7 @@ public class Groups extends ForwardingSet<GroupData> {
   public Groups withAdded(GroupData group){
     Groups groups = new Groups(this);//создаем копию существующего объекта
     groups.add(group); //добавляем новую группу
-    return groups;
+    return groups; //возврат копии с добавленной группой
   }
 
   //Копия из которой удалили группу

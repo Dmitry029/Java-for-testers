@@ -6,6 +6,8 @@ import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
+
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -19,15 +21,15 @@ public class GroupCreationTests extends TestBase{
   @Test
   public void testGroupCreationTests() {
     app.goTo().groupPage();
-    Set<GroupData> before = app.group().all(); //Подсчет групп до добавления
+    Groups before = app.group().all(); //Подсчет групп до добавления
     GroupData group = new GroupData().withName("test2");//данные для создания группы
     app.group().create(group);//создаем группу
-    Set<GroupData> after = app.group().all();  //Подсчет групп после добавления
+    Groups after = app.group().all();  //Подсчет групп после добавления
     assertThat(after.size(), equalTo(before.size() + 1));   // Проверка кол-ва групп до и после создания
 
-    group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt());//находим макс идентификатор среди групп
-    before.add(group);
-    assertThat(after, equalTo(before));
+    assertThat(after, equalTo
+            (before.withAdded(group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
+    //в сравнении учасствует копия объекта
     }
 }
 
