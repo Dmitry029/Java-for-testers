@@ -7,7 +7,9 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Администратор on 29.01.2017.
@@ -121,6 +123,22 @@ public class ContactHelper extends HelperBase {
         return wd.findElements(By.xpath("//tr[@name='entry']")).size();
   }
 //*******************************************************************************************************
+
+  //Метод создания МНОЖЕСТВА контактов************************************************************************
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
+    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
+    for (WebElement element : elements){
+      String firstname = element.findElement(By.xpath(".//td[3]")).getText(); //выбор имени 3- я колонка!!!
+      String lastname = element.findElement(By.xpath(".//td[2]")).getText();
+
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      // полученин id
+
+      contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
+    }
+    return contacts;
+  }
 //Метод создания списка контактов************************************************************************
   public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
