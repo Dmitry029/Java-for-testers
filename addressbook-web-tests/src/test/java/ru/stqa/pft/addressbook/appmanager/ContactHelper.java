@@ -5,8 +5,6 @@ import org.openqa.selenium.*;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import org.openqa.selenium.support.ui.Select;
-
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -52,13 +50,10 @@ public class ContactHelper extends HelperBase {
 //************************************************************************************************
   public void submitContactCreation() {click(By.name("submit"));}
 //************************************************************************************************
-
-// Методы Для МОДИФИКАЦИИ контакта****************************************************************
-// click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
-  public void initModificationContact(int index) {
-    wd.findElements(By.xpath("//tr[@name='entry']")).get(index).  //получение всех сторок, выбор строк по индексу
-    findElement(By.xpath(".//a[contains(@href,'edit')]")).click();  //выбор в строке элемента и click
-  }
+// Методы выбора контакта для  МОДИФИКАЦИИ по id**************************************************
+  public void selectContactModificationById(int id) {
+    wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr['" + id + "']/td[8]/a/img")).click();
+    }
 //*************************************************************************************************
 
   public void submitContactModification()
@@ -73,16 +68,6 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector("input[value='" + id +"']")).click(); // получаем id строки
   }
 
-
-// Методы ВЫБОРА контакта для УДАЛЕНИЯ. Другие локаторы*****************************************************
-  public void selectContactDelation(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click(); // Локатор name
-    }
-    //click(By.xpath("//input[@type='checkbox'][1]"));
-    //click(By.cssSelector("td.center"));
-    //click(By.name("selected[]"));
-//***************************************************************************************************
-
 //Удаление контакта**********************************************************************************
     public void deleteContact() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input")); //локатор кнопки Delete (Selenium Builder)
@@ -96,34 +81,23 @@ public class ContactHelper extends HelperBase {
     submitContactCreation();
     returnToHomePage();
   }
-//******************************************************************************************************
-// Модификация контакта*********************************************************************************
-  public void modify(int index, ContactData contact) {
-    initModificationContact(index);
-    fillContactForm(contact,false);
-    submitContactModification();
-    returnToHomePage();
-  }
-//******************************************************************************************************
-// Удаление контакта по идентификатору************************************************************************************
+//*******************************************************************************************************
+// Модификация контакта по id****************************************************************************
+  public void modify(ContactData contact) {
+  selectContactModificationById(contact.getId());
+  fillContactForm(contact,false);
+  submitContactModification();
+  returnToHomePage();
+}
+  //******************************************************************************************************
+
+// Удаление контакта по идентификатору id***************************************************************
   public void delete(ContactData сontact) {
     selectContactDelationById(сontact.getId());  // Выбор последнего эл-та (before -1)
     deleteContact();
     returnToHomePage2();//Возврат на Home page
   }
 
-
-// Удаление контакта************************************************************************************
-   public void delete(int index) {
-     selectContactDelation(index);  // Выбор последнего эл-та (before -1)
-     deleteContact();
-     returnToHomePage2();//Возврат на Home page
-}
-  /*private void delete(int index) {
-    app.contact().selectContactDelation(index);  // Выбор последнего эл-та (before -1)
-    app.contact().deleteContact();
-    app.goTo().homePage();//Возврат на Home page
-  }*/
 
 // Проверка наличия контакта****************************************************************************
   public boolean isThereAContact() {
@@ -154,7 +128,49 @@ public class ContactHelper extends HelperBase {
     }
     return contacts;
   }
-//Метод создания списка контактов************************************************************************
+}
+
+
+
+
+//Удаленные в l5_m5
+/*// Модификация контакта*********************************************************************************
+  public void modify(int index, ContactData contact) {
+    selectContactModification(index);
+    fillContactForm(contact,false);
+    submitContactModification();
+    returnToHomePage();
+  }
+//******************************************************************************************************
+*/
+
+/*// Методы выбора контакта для МОДИФИКАЦИИ по индексу***************************************************
+// click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+  public void selectContactModification(int index) {
+    wd.findElements(By.xpath("//tr[@name='entry']")).get(index).  //получение всех сторок, выбор строк по индексу
+    findElement(By.xpath(".//a[contains(@href,'edit')]")).click();  //выбор в строке элемента и click
+  }
+//*************************************************************************************************
+*/
+
+/*// Удаление контакта************************************************************************************
+   public void delete(int index) {
+     selectContactDelation(index);  // Выбор последнего эл-та (before -1)
+     deleteContact();
+     returnToHomePage2();//Возврат на Home page
+}*/
+
+/*// Методы ВЫБОРА контакта для УДАЛЕНИЯ. По index. Другие локаторы*****************************************************
+  public void selectContactDelation(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click(); // Локатор name
+    }
+    //click(By.xpath("//input[@type='checkbox'][1]"));
+    //click(By.cssSelector("td.center"));
+    //click(By.name("selected[]"));
+//***************************************************************************************************
+*/
+
+/*//Метод создания списка контактов************************************************************************
   public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
@@ -168,8 +184,4 @@ public class ContactHelper extends HelperBase {
       contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
     }
     return contacts;
-  }
-
-
-}
-//**********************************************************************************************************
+  }*/
