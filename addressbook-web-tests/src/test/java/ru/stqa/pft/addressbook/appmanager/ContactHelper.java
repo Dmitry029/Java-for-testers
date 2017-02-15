@@ -68,6 +68,12 @@ public class ContactHelper extends HelperBase {
 
 //**************************************************************************************************
 
+  // Методы ВЫБОРА контакта для УДАЛЕНИЯ. По ID*****************************************************
+  public void selectContactDelationById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id +"']")).click(); // получаем id строки
+  }
+
+
 // Методы ВЫБОРА контакта для УДАЛЕНИЯ. Другие локаторы*****************************************************
   public void selectContactDelation(int index) {
     wd.findElements(By.name("selected[]")).get(index).click(); // Локатор name
@@ -98,6 +104,14 @@ public class ContactHelper extends HelperBase {
     returnToHomePage();
   }
 //******************************************************************************************************
+// Удаление контакта по идентификатору************************************************************************************
+  public void delete(ContactData сontact) {
+    selectContactDelationById(сontact.getId());  // Выбор последнего эл-та (before -1)
+    deleteContact();
+    returnToHomePage2();//Возврат на Home page
+  }
+
+
 // Удаление контакта************************************************************************************
    public void delete(int index) {
      selectContactDelation(index);  // Выбор последнего эл-та (before -1)
@@ -154,5 +168,7 @@ public class ContactHelper extends HelperBase {
     }
     return contacts;
   }
+
+
 }
 //**********************************************************************************************************
