@@ -50,7 +50,7 @@ public class ContactHelper extends HelperBase {
 //************************************************************************************************
   public void submitContactCreation() {click(By.name("submit"));}
 //************************************************************************************************
-// Методы выбора контакта для  МОДИФИКАЦИИ по id**************************************************
+// Методы выбора контакта bp для  МОДИФИКАЦИИ по id**************************************************
   public void selectContactModificationById(int id) {
     wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr['" + id + "']/td[8]/a/img")).click();
     }

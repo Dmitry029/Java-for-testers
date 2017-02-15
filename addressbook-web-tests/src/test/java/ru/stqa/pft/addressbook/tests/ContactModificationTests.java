@@ -38,7 +38,7 @@ public class ContactModificationTests extends TestBase {
 
   public void testContactModification(){
 
-    Set<ContactData> before = app.contact().all(); // before - массив контактов
+    Set<ContactData> before = app.contact().all(); // before - множество контактов
     ContactData modifiedContact = before.iterator().next(); //элемент для удаления выбирается случайным образом
     // новая локальная переменная contact. заполняет контакт. l4_m7
     ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Sasha2")
@@ -48,15 +48,12 @@ public class ContactModificationTests extends TestBase {
     app.contact().modify(contact);
 
     Set<ContactData> after = app.contact().all();
-    Assert.assertEquals(after.size(), before.size()); //проверка размера массива контакта до и после модиф
+    Assert.assertEquals(after.size(), before.size()); //проверка размера множества контакта до и после модиф
 
     before.remove(modifiedContact);
-    before.add(contact); // та же локальн пер (чтобы не писать два раза)
-    Assert.assertEquals(before,after);//сравнение 2-х Спиcков упроядоченных по собственным правилам
-
+    before.add(contact);
+    Assert.assertEquals(before,after);//сравнение 2-х множеств
     }
-
-
 }
 
 

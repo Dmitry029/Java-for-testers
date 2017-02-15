@@ -20,12 +20,12 @@ public class ContactCreationTests extends TestBase {
 
     app.contact().create(contact, true); //создаем контакт
 
-    Set<ContactData> after = app.contact().all(); //after - список объектов после добавления
+    Set<ContactData> after = app.contact().all(); //after - множество объектов после добавления
     Assert.assertEquals(after.size(), before.size() + 1);     // Сравнение результатов
 
     contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt());
-    before.add(contact); // та же локальн пер (чтобы не писать два раза)
-    Assert.assertEquals(before,after);//сравнение 2-х Спиcков упроядоченных по собственным правилам
+    before.add(contact);
+    Assert.assertEquals(before,after);//сравнение 2-х множеств
   }
 }
 

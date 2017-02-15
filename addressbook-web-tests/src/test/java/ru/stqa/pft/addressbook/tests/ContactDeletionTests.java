@@ -31,13 +31,11 @@ public class ContactDeletionTests extends TestBase {
     ContactData deletedContact = before.iterator().next(); //элемент для удаления выбирается случайным образом
     app.contact().delete(deletedContact);
     Set<ContactData> after = app.contact().all();
-    Assert.assertEquals(after.size(), before.size() - 1); // Сравнение размеров списка
+    Assert.assertEquals(after.size(), before.size() - 1);
 
     before.remove(deletedContact);
-    Assert.assertEquals(before,after); //Сравнение массивов целиком поэлементно
+    Assert.assertEquals(before,after); //Сравнение множеств
   }
-
-
 }
 
 
