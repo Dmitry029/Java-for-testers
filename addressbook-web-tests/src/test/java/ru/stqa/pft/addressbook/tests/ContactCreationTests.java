@@ -1,8 +1,14 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import sun.font.CoreMetrics;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+
 import java.util.Set;
 
 public class ContactCreationTests extends TestBase {
@@ -21,11 +27,11 @@ public class ContactCreationTests extends TestBase {
     app.contact().create(contact, true); //создаем контакт
 
     Set<ContactData> after = app.contact().all(); //after - множество объектов после добавления
-    Assert.assertEquals(after.size(), before.size() + 1);     // Сравнение результатов
+    assertThat(after.size(), equalTo(before.size() + 1));     // Сравнение результатов
 
     contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt());
     before.add(contact);
-    Assert.assertEquals(before,after);//сравнение 2-х множеств
+    assertThat(after, equalTo(before));
   }
 }
 
