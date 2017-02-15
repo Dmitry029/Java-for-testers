@@ -68,6 +68,7 @@ public class ContactHelper extends HelperBase {
   // Методы ВЫБОРА контакта для УДАЛЕНИЯ. По ID*****************************************************
   public void selectContactDelationById(int id) {
     wd.findElement(By.cssSelector("input[value='" + id +"']")).click(); // получаем id строки
+    System.out.println(id);
   }
 
 //Удаление контакта**********************************************************************************
@@ -95,7 +96,7 @@ public class ContactHelper extends HelperBase {
 
 // Удаление контакта по идентификатору id***************************************************************
   public void delete(ContactData сontact) {
-    selectContactDelationById(сontact.getId());  // Выбор последнего эл-та (before -1)
+    selectContactDelationById(сontact.getId());
     deleteContact();
     returnToHomePage2();//Возврат на Home page
   }
