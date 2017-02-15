@@ -1,9 +1,25 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
+import sun.font.CoreMetrics;
+
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
+
 import java.util.Set;
 
 /**
@@ -24,19 +40,13 @@ public class GroupModificationTests extends TestBase {
   @Test
   public void testGroupModification() {
 
-    Set<GroupData> before = app.group().all(); //Подсчет КОЛ-ВА групп до модификации l4_m5
+    Groups before = app.group().all(); //Подсчет КОЛ-ВА групп до модификации l4_m5
     GroupData modifiedGroup = before.iterator().next();
         GroupData group= new GroupData()
             .withId(modifiedGroup.getId()).withName("test1").withHeader("test2").withFooter("test3");
     app.group().modify(group);
-
-    Set<GroupData> after = app.group().all();
-    Assert.assertEquals(after.size(), before.size());       // Проверка РАЗМЕРА групп до и после модификации
-
-    before.remove(modifiedGroup);
-    before.add(group); // та же локальн пер (чтобы не писать два раза)
-    Assert.assertEquals(before,after);//сравнение 2-х Списков упроядоченных по собственным правилам
-  }
-
-
+    Groups after = app.group().all();
+    assertEquals(after.size(), before.size());       // Проверка РАЗМЕРА групп до и после модификации
+    assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
+    }
 }
