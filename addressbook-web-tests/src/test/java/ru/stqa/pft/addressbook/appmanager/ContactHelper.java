@@ -30,7 +30,7 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.linkText("home")).click();
   }
 
-//Заполнение формы контакта*******************************************************************
+  //Заполнение формы контакта*******************************************************************
   public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("lastname"), contactData.getLastname());
@@ -47,78 +47,73 @@ public class ContactHelper extends HelperBase {
       // Проверяем, что в форме нет элемента выбора группы. Контролируем отсутствие списка групп
     }
   }
-//***********************************************************************************************
-
-//************************************************************************************************
+  //************************************************************************************************
   public void submitContactCreation() {click(By.name("submit"));}
-//************************************************************************************************
-// Методы выбора контакта bp для  МОДИФИКАЦИИ по id**************************************************
+
+  // Методы выбора контакта bp для  МОДИФИКАЦИИ по id**************************************************
   public void selectContactModificationById(int id) {
     wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr['" + id + "']/td[8]/a/img")).click();
-    }
-//*************************************************************************************************
-
+  }
+  //*************************************************************************************************
   public void submitContactModification()
   {
     click(By.name("update"));
   }
-
-//**************************************************************************************************
+  //**************************************************************************************************
 
   // Методы ВЫБОРА контакта для УДАЛЕНИЯ. По ID*****************************************************
   public void selectContactDelationById(int id) {
     wd.findElement(By.cssSelector("input[value='" + id +"']")).click(); // получаем id строки
     System.out.println(id);
   }
-
-//Удаление контакта**********************************************************************************
-    public void deleteContact() {
+  //Удаление контакта**********************************************************************************
+  public void deleteContact() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input")); //локатор кнопки Delete (Selenium Builder)
     wd.switchTo().alert().accept();
   }
-//*****************************************************************************************************
-
-// Создание контакта***********************************************************************************
+   // Создание контакта***********************************************************************************
   public void create(ContactData contact, boolean creation ) {
     fillContactForm(contact, creation);
     submitContactCreation();
+    contactCache = null;
     returnToHomePage();
   }
-//*******************************************************************************************************
-// Модификация контакта по id****************************************************************************
+   // Модификация контакта по id****************************************************************************
   public void modify(ContactData contact) {
-  selectContactModificationById(contact.getId());
-  fillContactForm(contact,false);
-  submitContactModification();
-  returnToHomePage();
-}
-  //******************************************************************************************************
-
-// Удаление контакта по идентификатору id***************************************************************
+    selectContactModificationById(contact.getId());
+    fillContactForm(contact,false);
+    submitContactModification();
+    contactCache = null;
+    returnToHomePage();
+  }
+  // Удаление контакта по идентификатору id***************************************************************
   public void delete(ContactData сontact) {
     selectContactDelationById(сontact.getId());
     deleteContact();
+    contactCache = null;
     returnToHomePage2();//Возврат на Home page
   }
-
-
-// Проверка наличия контакта****************************************************************************
+  // Проверка наличия контакта****************************************************************************
   public boolean isThereAContact() {
     return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
-//*******************************************************************************************************
-//Подсчет контактов  и разные локаторы*******************************************************************
-// return wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).size();
-// return wd.findElements(By.name("selected[]")).size();
-
+   //Подсчет контактов  и разные локаторы*******************************************************************
   public int getContactCount() {
         return wd.findElements(By.xpath("//tr[@name='entry']")).size();
   }
-//*******************************************************************************************************
+
+  // return wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).size();
+  // return wd.findElements(By.name("selected[]")).size();
+  //*******************************************************************************************************
+
+  private Contacts contactCache = null;
 
   //Метод создания МНОЖЕСТВА контактов************************************************************************
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null){
+        return new Contacts(contactCache);//проверка пустой ли cache?
+      }
+    contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
     for (WebElement element : elements){
       String firstname = element.findElement(By.xpath(".//td[3]")).getText(); //выбор имени 3- я колонка!!!
@@ -127,9 +122,9 @@ public class ContactHelper extends HelperBase {
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       // полученин id
 
-      contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
+      contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
     }
-    return contacts;
+    return new Contacts(contactCache);
   }
 }
 
