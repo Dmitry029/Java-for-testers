@@ -37,6 +37,8 @@ public class ContactHelper extends HelperBase {
     type(By.name("address"), contactData.getAddress());
     type(By.name("home"), contactData.getHomephone());
     type(By.name("mobile"), contactData.getMobilephone());
+    type(By.name("work"), contactData.getWorkphone());
+    type(By.name("email"), contactData.getEmail());
 
     if (creation){
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
@@ -50,10 +52,10 @@ public class ContactHelper extends HelperBase {
   //************************************************************************************************
   public void submitContactCreation() {click(By.name("submit"));}
 
-  // Методы выбора контакта bp для  МОДИФИКАЦИИ по id**************************************************
+  // Методы выбора контакта bp для  МОДИФИКАЦИИ по id ДРУГИЕ СЕЛЕКТОРЫ l5_m9!!!!********************************************
   public void selectContactModificationById(int id) {
-    //wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr['" + id + "']/td[8]/a/img")).click();
-    click(By.xpath("//input[@value='" + id +"']/../..//img[@alt='Edit']"));
+    //click(By.xpath("//input[@value='" + id +"']/../..//img[@alt='Edit']"));
+    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id))).click();
   }
   //*************************************************************************************************
   public void submitContactModification()

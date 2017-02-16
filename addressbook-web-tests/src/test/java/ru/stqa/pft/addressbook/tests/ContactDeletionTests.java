@@ -27,7 +27,8 @@ public class ContactDeletionTests extends TestBase {
       app.goTo().addNew();
       app. contact().create(new ContactData().withFirstname("Ivan11").withLastname("Pomidorov")
               .withAddress("Minsk, Gagarina 21/14").withHomephone("+375 17 5544120")
-              .withMobilephone("+375 29 6222552").withGroup("test8"), true);
+              .withMobilephone("+375 29 6222552").withWorkphone("4576895")
+              .withEmail("lkj@yui.io").withGroup("test8"), true);
     }
     //*********************************************************************************************
   }

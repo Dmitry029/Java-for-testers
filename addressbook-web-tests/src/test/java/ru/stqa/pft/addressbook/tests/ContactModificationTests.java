@@ -7,14 +7,8 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
-import ru.stqa.pft.addressbook.model.Groups;
-
-import java.util.Set;
-
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.equalToObject;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
 
 /**
  * Created by Администратор on 29.01.2017.
@@ -37,7 +31,8 @@ public class ContactModificationTests extends TestBase {
       app.goTo().addNew();
       app.contact().create(new ContactData().withFirstname("Ivan100").withLastname("Pomidorov")
                 .withAddress("Minsk, Gagarina 21/14").withHomephone("+375 17 5544120")
-                .withMobilephone("+375 29 6222552").withGroup("test8"), true);
+                .withMobilephone("+375 29 6222552").withWorkphone("587-38-14")
+                .withEmail("opi@poi.hj").withGroup("test8"), true);
     }
     //*************************************************************************
   }
@@ -52,7 +47,8 @@ public class ContactModificationTests extends TestBase {
     // новая локальная переменная contact. заполняет контакт. l4_m7
     ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Sasha3")
             .withLastname("Pomidorov").withAddress("Minsk, Gagarina 21/14").withHomephone("+375 17 5544120")
-            .withMobilephone("+375 29 6222552").withGroup(null);
+            .withMobilephone("+375 29 6222552").withWorkphone("547-52-65")
+            .withEmail("iou@sdf.oi").withGroup(null);
 
     app.contact().modify(contact);
     //assertThat(app.contact().countContact(), equalTo(before.size()));
