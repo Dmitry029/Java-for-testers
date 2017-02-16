@@ -38,13 +38,16 @@ public class ContactDeletionTests extends TestBase {
     Contacts before = app.contact().all();
     ContactData deletedContact = before.iterator().next(); //элемент для удаления выбирается случайным образом
     app.contact().delete(deletedContact);
-  //  assertThat(app.group().count(), equalTo(before.size() - 1));
+    assertThat(app.contact().countContact(), equalTo(before.size() - 1));
     Contacts after = app.contact().all();
     assertThat(after, equalTo(before.without(deletedContact)));
     }
 }
 
 
+
+
 //int before = app.getContactHelper(). getContactCount();
 //int after = app.getContactHelper(). getContactCount();
 //assertEquals(after.size(), before.size() - 1); проверка размера таким способом заменена в i5_m8
+//assertThat(app.group().count(), equalTo(before.size())); l5_m8

@@ -25,10 +25,8 @@ public class ContactCreationTests extends TestBase {
             .withMobilephone("+375 29 6222552").withGroup("test2");
 
     app.contact().create(contact, true); //создаем контакт
-
+    assertThat(app.contact().countContact(), equalTo(before.size() + 1));
     Contacts after = (Contacts) app.contact().all(); //after - множество объектов после добавления
-    assertThat(after.size(), equalTo(before.size() + 1));     // Сравнение результатов
-
     assertThat(after, equalTo
             (before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
@@ -46,3 +44,4 @@ public class ContactCreationTests extends TestBase {
  /* Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
     before.sort(byId);
             after.sort(byId);*/
+//assertThat(after.size(), equalTo(before.size() + 1));     // Сравнение результатов

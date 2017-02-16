@@ -1,11 +1,20 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
+
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.equalToObject;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by Администратор on 29.01.2017.
@@ -38,22 +47,24 @@ public class ContactModificationTests extends TestBase {
 
   public void testContactModification(){
 
-    Set<ContactData> before = app.contact().all(); // before - множество контактов
+    Contacts before = app.contact().all(); // before - множество контактов
     ContactData modifiedContact = before.iterator().next(); //элемент для удаления выбирается случайным образом
     // новая локальная переменная contact. заполняет контакт. l4_m7
-    ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Sasha2")
-            .withLastname("Pomidorov1").withAddress("Minsk, Gagarina 21/14").withHomephone("+375 17 5544120")
+    ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Sasha3")
+            .withLastname("Pomidorov").withAddress("Minsk, Gagarina 21/14").withHomephone("+375 17 5544120")
             .withMobilephone("+375 29 6222552").withGroup(null);
 
     app.contact().modify(contact);
-
-    Set<ContactData> after = app.contact().all();
-    Assert.assertEquals(after.size(), before.size()); //проверка размера множества контакта до и после модиф
-
-    before.remove(modifiedContact);
-    before.add(contact);
-    Assert.assertEquals(before,after);//сравнение 2-х множеств
+    //assertThat(app.contact().countContact(), equalTo(before.size()));
+    assertThat(app.contact().countContact(), equalTo(before.size()));
+    Contacts after = app.contact().all();
+    assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     }
 }
 
 
+/*before.remove(modifiedContact);
+    before.add(contact);
+    Assert.assertEquals(before,after);//сравнение 2-х множеств*/
+
+//assertEquals(after.size(), before.size()); //проверка размера множества контакта до и после модиф

@@ -52,7 +52,8 @@ public class ContactHelper extends HelperBase {
 
   // Методы выбора контакта bp для  МОДИФИКАЦИИ по id**************************************************
   public void selectContactModificationById(int id) {
-    wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr['" + id + "']/td[8]/a/img")).click();
+    //wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr['" + id + "']/td[8]/a/img")).click();
+    click(By.xpath("//input[@value='" + id +"']/../..//img[@alt='Edit']"));
   }
   //*************************************************************************************************
   public void submitContactModification()
@@ -98,7 +99,7 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
    //Подсчет контактов  и разные локаторы*******************************************************************
-  public int getContactCount() {
+  public int countContact() {
         return wd.findElements(By.xpath("//tr[@name='entry']")).size();
   }
 
