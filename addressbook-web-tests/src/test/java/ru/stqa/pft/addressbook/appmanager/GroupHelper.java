@@ -86,13 +86,13 @@ public class GroupHelper extends HelperBase{
 
 
   // Подсчет колличества групп на странице Groups
-  public int getGroupCount() {
+  public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
   private Groups groupCache = null;
 
-   // Метод заполнения списка данными
+  // Метод заполнения списка данными
   public Groups all() {
     if (groupCache != null){
     return new Groups(groupCache);//проверка пустой ли cache?

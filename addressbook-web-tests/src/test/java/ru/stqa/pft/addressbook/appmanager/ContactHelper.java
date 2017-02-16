@@ -106,7 +106,7 @@ public class ContactHelper extends HelperBase {
   // return wd.findElements(By.name("selected[]")).size();
   //*******************************************************************************************************
 
-  private Contacts contactCache = null;
+  private Contacts contactCache = null; //Кеширование l5_m7
 
   //Метод создания МНОЖЕСТВА контактов************************************************************************
   public Contacts all() {

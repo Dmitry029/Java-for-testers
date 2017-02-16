@@ -15,13 +15,23 @@ public class GroupCreationTests extends TestBase{
     Groups before = app.group().all(); //Подсчет групп до добавления
     GroupData group = new GroupData().withName("test2");//данные для создания группы
     app.group().create(group);//создаем группу
+    assertThat(app.group().count(), equalTo(before.size() + 1));   // Проверка кол-ва групп до и после создания
     Groups after = app.group().all();  //Подсчет групп после добавления
-    assertThat(after.size(), equalTo(before.size() + 1));   // Проверка кол-ва групп до и после создания
-
     assertThat(after, equalTo
             (before.withAdded(group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
     //в сравнении учасствует копия объекта
     }
+  @Test
+  public void testBadGroupCreationTests() {
+    app.goTo().groupPage();
+    Groups before = app.group().all(); //Подсчет групп до добавления
+    GroupData group = new GroupData().withName("test2'");//данные для создания группы !!!! некорректные данные
+    app.group().create(group);//создаем группу
+    assertThat(app.group().count(), equalTo(before.size()));   // Проверка кол-ва групп до и после создания
+    Groups after = app.group().all();  //Подсчет групп после добавления
+    assertThat(after, equalTo(before));
+
+  }
 }
 
 
