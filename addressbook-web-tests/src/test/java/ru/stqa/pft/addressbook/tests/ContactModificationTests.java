@@ -30,8 +30,8 @@ public class ContactModificationTests extends TestBase {
       //В случае отсутствия контакта, он создается. ***************************
       app.goTo().addNew();
       app.contact().create(new ContactData().withFirstname("Ivan100").withLastname("Pomidorov")
-                .withAddress("Minsk, Gagarina 21/14").withHomephone("+375 17 5544120")
-                .withMobilephone("+375 29 6222552").withWorkphone("587-38-14")
+                .withAddress("Minsk, Gagarina 21/14").withHomePhone("+375 17 5544120")
+                .withMobilePhone("+375 29 6222552").withWorkPhone("587-38-14")
                 .withEmail("opi@poi.hj").withGroup("test8"), true);
     }
     //*************************************************************************
@@ -46,8 +46,8 @@ public class ContactModificationTests extends TestBase {
     ContactData modifiedContact = before.iterator().next(); //элемент для удаления выбирается случайным образом
     // новая локальная переменная contact. заполняет контакт. l4_m7
     ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Sasha3")
-            .withLastname("Pomidorov").withAddress("Minsk, Gagarina 21/14").withHomephone("+375 17 5544120")
-            .withMobilephone("+375 29 6222552").withWorkphone("547-52-65")
+            .withLastname("Pomidorov").withAddress("Minsk, Gagarina 21/14").withHomePhone("+375 17 5544120")
+            .withMobilePhone("+375 29 6222552").withWorkPhone("547-52-65")
             .withEmail("iou@sdf.oi").withGroup(null);
 
     app.contact().modify(contact);

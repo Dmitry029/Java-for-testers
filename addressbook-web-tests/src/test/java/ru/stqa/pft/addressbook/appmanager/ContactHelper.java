@@ -7,9 +7,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Администратор on 29.01.2017.
@@ -35,9 +33,9 @@ public class ContactHelper extends HelperBase {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("address"), contactData.getAddress());
-    type(By.name("home"), contactData.getHomephone());
-    type(By.name("mobile"), contactData.getMobilephone());
-    type(By.name("work"), contactData.getWorkphone());
+    type(By.name("home"), contactData.getHomePhone());
+    type(By.name("mobile"), contactData.getMobilePhone());
+    type(By.name("work"), contactData.getWorkPhone());
     type(By.name("email"), contactData.getEmail());
 
     if (creation){
@@ -53,7 +51,7 @@ public class ContactHelper extends HelperBase {
   public void submitContactCreation() {click(By.name("submit"));}
 
   // Методы выбора контакта bp для  МОДИФИКАЦИИ по id ДРУГИЕ СЕЛЕКТОРЫ l5_m9!!!!********************************************
-  public void selectContactModificationById(int id) {
+  public void initContactModificationById(int id) {
     //click(By.xpath("//input[@value='" + id +"']/../..//img[@alt='Edit']"));
     wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id))).click();
   }
@@ -83,7 +81,7 @@ public class ContactHelper extends HelperBase {
   }
    // Модификация контакта по id****************************************************************************
   public void modify(ContactData contact) {
-    selectContactModificationById(contact.getId());
+    initContactModificationById(contact.getId());
     fillContactForm(contact,false);
     submitContactModification();
     contactCache = null;
@@ -114,6 +112,52 @@ public class ContactHelper extends HelperBase {
   //Метод создания МНОЖЕСТВА контактов************************************************************************
   public Contacts all() {
     if (contactCache != null){
+      return new Contacts(contactCache);//проверка пустой ли cache?
+    }
+    contactCache = new Contacts();
+    List<WebElement> rows = wd.findElements(By.name("entry"));
+    for (WebElement row : rows){
+      List<WebElement> cells = row.findElements(By.tagName("td"));
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      String lastname = cells.get(1).getText();
+      String firstname = cells.get(2).getText();
+      //String address = cells.get(3).getText();
+      //String email = cells.get(4).getText();
+      String allPhones = cells.get(5).getText();
+
+      contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
+      .withAllPhones(allPhones));
+    }
+    return new Contacts(contactCache);
+  }
+
+  //Метод загружающий информацию из формы редаетирования********************************************************
+  public ContactData infoFromEditForm(ContactData contact) {
+    initContactModificationById(contact.getId());
+    String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String home = wd.findElement(By.name("home")).getAttribute("value");
+    String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+    String work = wd.findElement(By.name("work")).getAttribute("value");
+   // String address = wd.findElement(By.name("address")).getAttribute("value");
+   // String email = wd.findElement(By.name("email")).getAttribute("value");
+
+    wd.navigate().back();
+    return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
+            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
+  }
+}
+
+
+/* в l5_m11 убрали разрезание сторки на 3 части ( '\n" это перевод строки
+// String [] phones = cells.get(5).getText().split("\n");
+contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
+        .withHomephone(phones[0]).withMobilephone(phones[1]).withWorkphone(phones[2]));*/
+
+
+ /* //Метод создания МНОЖЕСТВА контактов************************************************************************
+  public Contacts all() {
+    if (contactCache != null){
         return new Contacts(contactCache);//проверка пустой ли cache?
       }
     contactCache = new Contacts();
@@ -128,11 +172,7 @@ public class ContactHelper extends HelperBase {
       contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
     }
     return new Contacts(contactCache);
-  }
-}
-
-
-
+  }*/
 
 //Удаленные в l5_m5
 /*// Модификация контакта*********************************************************************************
@@ -145,7 +185,7 @@ public class ContactHelper extends HelperBase {
 //******************************************************************************************************
 */
 
-/*// Методы выбора контакта для МОДИФИКАЦИИ по индексу***************************************************
+/*// Методы выбора контакта для МОДИФИКАЦИИ по индексу***l5_m5************************************************
 // click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   public void selectContactModification(int index) {
     wd.findElements(By.xpath("//tr[@name='entry']")).get(index).  //получение всех сторок, выбор строк по индексу
@@ -154,14 +194,14 @@ public class ContactHelper extends HelperBase {
 //*************************************************************************************************
 */
 
-/*// Удаление контакта************************************************************************************
+/*// Удаление контакта************l5_m5************************************************************************
    public void delete(int index) {
      selectContactDelation(index);  // Выбор последнего эл-та (before -1)
      deleteContact();
      returnToHomePage2();//Возврат на Home page
 }*/
 
-/*// Методы ВЫБОРА контакта для УДАЛЕНИЯ. По index. Другие локаторы*****************************************************
+/*// Методы ВЫБОРА контакта для УДАЛЕНИЯ. По index. Другие локаторы*******l5_m5**********************************************
   public void selectContactDelation(int index) {
     wd.findElements(By.name("selected[]")).get(index).click(); // Локатор name
     }
@@ -171,7 +211,7 @@ public class ContactHelper extends HelperBase {
 //***************************************************************************************************
 */
 
-/*//Метод создания списка контактов************************************************************************
+/*//Метод создания списка контактов**********l5_m5**************************************************************
   public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
