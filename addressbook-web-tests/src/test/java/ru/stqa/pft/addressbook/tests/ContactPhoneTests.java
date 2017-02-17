@@ -32,8 +32,8 @@ public class ContactPhoneTests extends TestBase {
   @Test
   public void testContactPhones(){
     app.goTo().homePage();
-    ContactData contact = app.contact().all().iterator().next(); //загрузка инф с Home page
-    ContactData contactInforFromEditForm = app.contact().infoFromEditForm(contact);//загрузка инф с формы редактирования
+    ContactData contact = app.contact().all().iterator().next(); //загрузка множества контактов и выбор одного из них случайным образом
+    ContactData contactInforFromEditForm = app.contact().infoFromEditForm(contact);//загрузка данных из формы редактирования
 
     assertThat(contact.getAllPhones(),equalTo(mergePhones(contactInforFromEditForm)));
   }

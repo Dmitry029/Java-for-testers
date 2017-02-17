@@ -40,14 +40,15 @@ public class ContactHelper extends HelperBase {
     type(By.name("email2"), contactData.getEmail2());
     type(By.name("email3"), contactData.getEmail3());
 
-    if (creation){
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+   // временно отключено для создания контактов без групп
+   // if (creation){
+   //   new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
       /*creation true для теста создания контакта. Тест увидит наличие нужного эл-та и выберет
       из выпадающего списка группу по имени. Тест для модиф контакта creation false перех на else*/
-    } else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
+   // } else {
+   //   Assert.assertFalse(isElementPresent(By.name("new_group")));
       // Проверяем, что в форме нет элемента выбора группы. Контролируем отсутствие списка групп
-    }
+   // }
   }
   //************************************************************************************************
   public void submitContactCreation() {click(By.name("submit"));}
@@ -111,7 +112,7 @@ public class ContactHelper extends HelperBase {
 
   private Contacts contactCache = null; //Кеширование l5_m7
 
-  //Метод создания МНОЖЕСТВА контактов************************************************************************
+  //Метод создания МНОЖЕСТВА контактов из данных на Home page*************************************************
   public Contacts all() {
     if (contactCache != null){
       return new Contacts(contactCache);//проверка пустой ли cache?
@@ -133,9 +134,10 @@ public class ContactHelper extends HelperBase {
     return new Contacts(contactCache);
   }
 
-  //Метод загружающий информацию из формы редаетирования********************************************************
+  //Метод загружающий информацию из формы редалктирования********************************************************
   public ContactData infoFromEditForm(ContactData contact) {
-    initContactModificationById(contact.getId());
+    initContactModificationById(contact.getId());//переход по Id на стр редактирования!!
+
     String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
     String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
     String home = wd.findElement(By.name("home")).getAttribute("value");
@@ -154,7 +156,7 @@ public class ContactHelper extends HelperBase {
 }
 
 
-/* в l5_m11 убрали разрезание сторки на 3 части ( '\n" это перевод строки
+/* в l5_m11 убрали разрезание сторки на 3 части ( "\n" это перевод строки
 // String [] phones = cells.get(5).getText().split("\n");
 contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
         .withHomephone(phones[0]).withMobilephone(phones[1]).withWorkphone(phones[2]));*/
