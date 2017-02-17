@@ -1,17 +1,15 @@
 package ru.stqa.pft.addressbook.tests;
 
-
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-
 /**
  * Created by Администратор on 17.02.2017.
  */
-public class ContactEmailTests extends TestBase{
+public class ContactAddressTests extends TestBase  {
 
   @Test
   public void testContactEmail(){
@@ -19,15 +17,11 @@ public class ContactEmailTests extends TestBase{
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-    assertThat(contact.getEmail(), equalTo(cleaned(contactInfoFromEditForm.getEmail())));
+    assertThat (cleaned(contact.getAddress()), equalTo(cleaned(contactInfoFromEditForm.getAddress())));
   }
 
   //Чистка строки от пробелов
-  public static String cleaned (String email){
-    return email.replaceAll("\\s","");
+  public static String cleaned (String address){
+    return address.replaceAll("\\s","");
   }
 }
-
-
-
-//assertThat(contact.getAddress(), CoreMatchers.equalTo(cleaned2(contactInforFromEditForm.getAddress())));
