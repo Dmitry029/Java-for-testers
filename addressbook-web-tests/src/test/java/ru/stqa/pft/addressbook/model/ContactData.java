@@ -10,21 +10,51 @@ public class ContactData {
   private String lastname;
   private String address;
   private String email;
+  private String email2;
+  private String email3;
   private String group;
   private String homephone;
   private String mobilephone;
   private String workphone;
   private String allPhones;
+  private String allEmails;
 
-  public String getAllPhones() {
-    return allPhones;
-      }
+  public int getId() {return id;  }
+  public String getFirstname() {
+    return firstname;
+  }
+  public String getLastname() { return lastname;  }
+  public String getAddress() {
+    return address;
+  }
+  public String getHomePhone() {
+    return homephone;
+  }
+  public String getMobilePhone() {
+    return mobilephone;
+  }
+  public String getWorkPhone() { return workphone;  }
+  public String getEmail() {
+    return email;
+  }
+  public String getEmail2() {
+    return email2;
+  }
+  public String getEmail3() {
+    return email3;
+  }
+  public String getGroup() { return group;  }
+  public String getAllPhones() { return allPhones;  }
+  public String getAllEmails() { return allEmails;  }
 
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
     return this;
   }
-
+  public ContactData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
 
   public ContactData withId(int id) {
     this.id = id;
@@ -64,34 +94,20 @@ public class ContactData {
     this.email = email;
     return this;
   }
+
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+  public ContactData withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
+
   public ContactData withGroup(String group) {
     this.group = group;
     return this;
   }
-
-
-  public int getId() {return id;  }
-  public String getFirstname() {
-    return firstname;
-  }
-  public String getLastname() { return lastname;  }
-  public String getAddress() {
-    return address;
-  }
-  public String getHomePhone() {
-    return homephone;
-  }
-  public String getMobilePhone() {
-    return mobilephone;
-  }
-  public String getWorkPhone() {
-    return workphone;
-  }
-  public String getEmail() {
-    return email;
-  }
-  public String getGroup() { return group;  }
-
 
   @Override
   public boolean equals(Object o) {
