@@ -21,14 +21,15 @@ public class ContactDeletionTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
+    //Проверка существования контакта. Иначе - создание и далее удаление***************************
     app.goTo().homePage();
-    //Проверка существования контакта. Иначе - создание и удаление*********************************
-    if (app.contact().all().size() == 0){
+      if (app.contact().all().size() == 0){
       app.goTo().addNew();
       app. contact().create(new ContactData().withFirstname("Ivan11").withLastname("Pomidorov")
               .withAddress("Minsk, Gagarina 21/14").withHomePhone("+375 17 5544120")
               .withMobilePhone("+375 29 6222552").withWorkPhone("4576895")
-              .withEmail("lkj@yui.io").withGroup("test8"), true);
+              .withEmail("lkj@yui.io").withEmail2("ooo@iii.uu").withEmail3("yyy@uuu.gg")
+              .withGroup("test2"), true);
     }
     //*********************************************************************************************
   }

@@ -47,8 +47,8 @@ public class ContactModificationTests extends TestBase {
     // новая локальная переменная contact. заполняет контакт. l4_m7
     ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Sasha3")
             .withLastname("Pomidorov").withAddress("Minsk, Gagarina 21/14").withHomePhone("+375 17 5544120")
-            .withMobilePhone("+375 29 6222552").withWorkPhone("547-52-65")
-            .withEmail("iou@sdf.oi").withGroup(null);
+            .withMobilePhone("+375 29 6222552").withWorkPhone("547-52-65").withEmail("iou@sdf.oi")
+            .withEmail2("iii@tt.ii").withEmail3("uuu@rr.uu").withGroup(null);
 
     app.contact().modify(contact);
     //assertThat(app.contact().countContact(), equalTo(before.size()));
