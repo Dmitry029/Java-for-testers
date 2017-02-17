@@ -36,7 +36,3 @@ public class ContactPhoneTests extends TestBase {
     return phone.replaceAll("\\s","").replaceAll("[-()]","");//***\\s это пробел
   }
 }
-
-
- /*assertThat(contact.getMobilephone(), CoreMatchers.equalTo(cleaned(contactInforFromEditForm.getMobilephone())));
-    assertThat(contact.getWorkphone(), CoreMatchers.equalTo(cleaned(contactInforFromEditForm.getWorkphone())));*/
