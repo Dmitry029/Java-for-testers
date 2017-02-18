@@ -46,7 +46,7 @@ public class CompareDetailsAndEditPages extends TestBase {
 
   private String mergeDadaFromEditPage(ContactData contact) {
     return Arrays.asList(contact.getFirstname(),contact.getLastname(),contact.getAddress(),
-            contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(),
+            ("H:" + contact.getHomePhone()), ("M:" + contact.getMobilePhone()),("W:" +  contact.getWorkPhone()),
             contact.getEmail(),contact.getEmail2(),contact.getEmail3())
             .stream().filter((s)-> ! s.equals(""))
             .map(CompareDetailsAndEditPages::cleaned2)
@@ -54,11 +54,11 @@ public class CompareDetailsAndEditPages extends TestBase {
   }
 
   private  static String cleaned1 (String information){
-    return information.replaceAll("\\s","").replaceAll("[H:MW]","");
+    return information.replaceAll("\\s","");
   }
 
   private  static String cleaned2 (String phone){
-    return phone.replaceAll("\\s","").replaceAll("[()H:MW]","");//***\\s это пробел
+    return phone.replaceAll("\\s","").replaceAll("[()]","");     //***\\s это пробел и др
   }
 }
 
