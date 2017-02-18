@@ -3,6 +3,11 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * Created by Администратор on 17.02.2017.
@@ -23,14 +28,41 @@ public class CompareDetailsAndEditPages extends TestBase {
     }
     //*********************************************************************************************
   }
+
   @Test
   public void testCompareDetailsAndEditPages() {
-     app.goTo().homePage();
-     ContactData contact = app.contact().all().iterator().next(); //загрузка множества контактов и выбор одного из них случайным образом
-     ContactData contactInforFromEditForm = app.contact().infoFromEditForm(contact);
+    app.goTo().homePage();
+    ContactData contact = app.contact().all().iterator().next(); //загрузка множества контактов и выбор одного из них случайным образом
+    ContactData contactInforFromEditForm = app.contact().infoFromEditForm(contact);
 
+    ContactData contactInforFromDetailesForm = app.contact().infoFromDetailesForm(contact);
+    //System.out.println(cleaned1(contactInforFromDetailesForm.getAllInformation()));
+    //System.out.println(mergeDadaFromEditPage(contactInforFromEditForm));
 
+    assertThat(cleaned1(contactInforFromDetailesForm.getAllInformation()),equalTo
+            (mergeDadaFromEditPage(contactInforFromEditForm)));
+
+  }
+
+  private String mergeDadaFromEditPage(ContactData contact) {
+    return Arrays.asList(contact.getFirstname(),contact.getLastname(),contact.getAddress(),
+            contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(),
+            contact.getEmail(),contact.getEmail2(),contact.getEmail3())
+            .stream().filter((s)-> ! s.equals(""))
+            .map(CompareDetailsAndEditPages::cleaned2)
+            .collect(Collectors.joining(""));
+  }
+
+  private  static String cleaned1 (String information){
+    return information.replaceAll("\\s","").replaceAll("[H:MW]","");
+  }
+
+  private  static String cleaned2 (String phone){
+    return phone.replaceAll("\\s","").replaceAll("[-()H:MW]","");//***\\s это пробел
   }
 }
 
-//assertThat(contact.getAllPhones(),equalTo(mergePhones(contactInforFromEditForm)));
+
+
+
+

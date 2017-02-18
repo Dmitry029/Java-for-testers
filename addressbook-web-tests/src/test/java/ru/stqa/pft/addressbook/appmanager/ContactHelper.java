@@ -53,19 +53,26 @@ public class ContactHelper extends HelperBase {
   //************************************************************************************************
   public void submitContactCreation() {click(By.name("submit"));}
 
-  // Методы выбора контакта bp для  МОДИФИКАЦИИ по id ДРУГИЕ СЕЛЕКТОРЫ l5_m9!!!!********************************************
+  // Методы выбора контакта для  МОДИФИКАЦИИ по id ДРУГИЕ СЕЛЕКТОРЫ l5_m9!!!!************************
   public void initContactModificationById(int id) {
     //click(By.xpath("//input[@value='" + id +"']/../..//img[@alt='Edit']"));
     wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id))).click();
   }
-  //*************************************************************************************************
+
+  // Методы выбора контакта для  "Детализации" по id ДРУГИЕ СЕЛЕКТОРЫ l5_m9!!!!***********************
+  public void initContactDetailesById(int id) {
+    wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[7]/a",id))).click();
+    //wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id))).click();
+
+  }
+  //**************************************************************************************************
   public void submitContactModification()
   {
     click(By.name("update"));
   }
   //**************************************************************************************************
 
-  // Методы ВЫБОРА контакта для УДАЛЕНИЯ. По ID*****************************************************
+  // Методы ВЫБОРА контакта для УДАЛЕНИЯ. По ID*******************************************************
   public void selectContactDelationById(int id) {
     wd.findElement(By.cssSelector("input[value='" + id +"']")).click(); // получаем id строки
     System.out.println(id);
@@ -152,6 +159,16 @@ public class ContactHelper extends HelperBase {
     return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
             .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withAddress(address)
             .withEmail(email).withEmail2(email2).withEmail3(email3);
+  }
+
+  //Метод загружающий информацию из формы детализации********************************************************
+  public ContactData infoFromDetailesForm(ContactData contact) {
+    initContactDetailesById(contact.getId());//переход по Id на стр детализации!!
+
+    String allinformation = wd.findElement(By.id("content")).getText();
+    //System.out.println(allinformation);
+    wd.navigate().back();
+    return new ContactData().withAllInformation(allinformation);
   }
 }
 

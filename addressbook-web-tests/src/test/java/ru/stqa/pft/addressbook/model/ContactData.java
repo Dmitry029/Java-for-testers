@@ -18,6 +18,7 @@ public class ContactData {
   private String workphone;
   private String allPhones;
   private String allEmails;
+  private String allInformation;
 
   public int getId() {return id;  }
   public String getFirstname() {
@@ -46,7 +47,12 @@ public class ContactData {
   public String getGroup() { return group;  }
   public String getAllPhones() { return allPhones;  }
   public String getAllEmails() { return allEmails;  }
+  public String getAllInformation() { return allInformation;  }
 
+  public ContactData withAllInformation(String allInformation) {
+    this.allInformation = allInformation;
+    return this;
+  }
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
     return this;
