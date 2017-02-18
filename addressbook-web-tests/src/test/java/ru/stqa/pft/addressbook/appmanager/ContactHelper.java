@@ -166,7 +166,7 @@ public class ContactHelper extends HelperBase {
     initContactDetailesById(contact.getId());//переход по Id на стр детализации!!
 
     String allinformation = wd.findElement(By.id("content")).getText();
-    //System.out.println(allinformation);
+    System.out.println(allinformation);
     wd.navigate().back();
     return new ContactData().withAllInformation(allinformation);
   }

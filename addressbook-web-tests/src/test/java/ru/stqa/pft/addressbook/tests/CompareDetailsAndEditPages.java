@@ -36,8 +36,8 @@ public class CompareDetailsAndEditPages extends TestBase {
     ContactData contactInforFromEditForm = app.contact().infoFromEditForm(contact);
 
     ContactData contactInforFromDetailesForm = app.contact().infoFromDetailesForm(contact);
-    //System.out.println(cleaned1(contactInforFromDetailesForm.getAllInformation()));
-    //System.out.println(mergeDadaFromEditPage(contactInforFromEditForm));
+    System.out.println(cleaned1(contactInforFromDetailesForm.getAllInformation()));
+    System.out.println(mergeDadaFromEditPage(contactInforFromEditForm));
 
     assertThat(cleaned1(contactInforFromDetailesForm.getAllInformation()),equalTo
             (mergeDadaFromEditPage(contactInforFromEditForm)));
@@ -58,7 +58,7 @@ public class CompareDetailsAndEditPages extends TestBase {
   }
 
   private  static String cleaned2 (String phone){
-    return phone.replaceAll("\\s","").replaceAll("[-()H:MW]","");//***\\s это пробел
+    return phone.replaceAll("\\s","").replaceAll("[()H:MW]","");//***\\s это пробел
   }
 }
 
