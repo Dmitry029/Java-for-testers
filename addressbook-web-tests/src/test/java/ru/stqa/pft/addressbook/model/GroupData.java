@@ -57,7 +57,7 @@ public class GroupData {
   }
 
 
-  @Override
+  @Override //строковое представление отчета. Как создадим - так и увидим
   public String toString() {
     return "GroupData{" +
             "id='" + id + '\'' +

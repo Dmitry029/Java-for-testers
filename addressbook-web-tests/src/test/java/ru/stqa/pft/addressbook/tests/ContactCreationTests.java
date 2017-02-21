@@ -44,26 +44,16 @@ public class ContactCreationTests extends TestBase {
     //Подсчет кол-ва контактов до создания нового**************************************************
     app.goTo().homePage(); //Переход на домашнюю страницу***********************
     Contacts before = (Contacts) app.contact().all(); //before - список объектов*
-    app.goTo().addNew();// Переход на стр создания контакта
-    app.contact().create(contact, true); //создаем контакт
+    app.goTo().addNew();                              // Переход на стр создания контакта
+    app.contact().create(contact, true);      //создаем контакт
     assertThat(app.contact().countContact(), equalTo(before.size() + 1));
-    Contacts after = (Contacts) app.contact().all(); //after - множество объектов после добавления
+    Contacts after = (Contacts) app.contact().all();   //after - множество объектов после добавления
     assertThat(after, equalTo
             (before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
-
 }
 
- /* public void testGroupCreationTests(GroupData group) {
-    app.goTo().groupPage();
-    Groups before = app.group().all(); //Подсчет групп до добавления
-    app.group().create(group);//создаем группу
-    assertThat(app.group().count(), equalTo(before.size() + 1));   // Проверка кол-ва групп до и после создания
-    Groups after = app.group().all();  //Подсчет групп после добавления
-    assertThat(after, equalTo
-            (before.withAdded(group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
-    //в сравнении учасствует копия объекта
-  }*/
+
 
 
  /*ContactData contact = new ContactData().withFirstname("Ivan").withLastname("Pomidorov")
