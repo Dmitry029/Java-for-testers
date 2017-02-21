@@ -9,21 +9,25 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 
+import java.io.File;
 import java.util.Set;
 
 public class ContactCreationTests extends TestBase {
 
-  @Test                                           //(enabled = false) выкл теста
+  @Test                                       //    (enabled = false) //выкл теста
   public void testContactCreation() {
     //Подсчет кол-ва контактов до создания нового**************************************************
     app.goTo().homePage(); //Переход на домашнюю страницу***********************
     Contacts before = (Contacts) app.contact().all(); //before - список объектов*
     app.goTo().addNew();// Переход на стр создания контакта
 
+    File photo = new File("src/test/resources/images.png");//относительный путь к файлу.
+    // Относительный по отношению к рабочей директории!! Т к программ на разных комп нах в разных
+    // рабочих директориях  -АБСОЛЮТНЫЙ путь указывать нельзя!!!
     ContactData contact = new ContactData().withFirstname("Ivan").withLastname("Pomidorov")
             .withAddress("Minsk, Gagarina 21/14").withHomePhone("+375 17 5544120")
             .withMobilePhone("+375 29 6222552").withWorkPhone("2741523")
-            .withEmail("lll@kkk.yy").withEmail2("ooo@kkk.yy").withEmail3("ppp@kkk.yy").withGroup(null);
+            .withEmail("lll@kkk.yy").withEmail2("ooo@kkk.yy").withEmail3("ppp@kkk.yy").withPhoto(photo);
 
     app.contact().create(contact, true); //создаем контакт
     assertThat(app.contact().countContact(), equalTo(before.size() + 1));
@@ -31,9 +35,17 @@ public class ContactCreationTests extends TestBase {
     assertThat(after, equalTo
             (before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
+
 }
 
-
+  /*@Test  //Вспомогательный тест проверка нахождения рисунка l6_m1
+  public void testCurrentDir(){
+    File currentDir = new File(".");
+    System.out.println(currentDir.getAbsolutePath());
+    File photo = new File("src/test/resources/images.png");
+    System.out.println(photo.getAbsolutePath());
+    System.out.println(photo.exists());
+  }*/
 
 
 /*ищем элемент с максимальный идентификатор. это - идентификатор новой группы l4_m9

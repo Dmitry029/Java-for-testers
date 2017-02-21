@@ -5,6 +5,8 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
+import java.io.File;
+
 /**
  * Created by Администратор on 29.01.2017.
  */
@@ -29,6 +31,14 @@ public class HelperBase {
       }
     }
   }
+
+  protected void attach(By locator, File file) {
+       if (file != null){
+         wd.findElement(locator).sendKeys(file.getAbsolutePath());//определяем абсолютный путь к файлу l6_m1
+         // метод getaasolutePath преобразовывает относительный путь в Абсолютный
+      }
+    }
+
 // Пока не используемый метод 3-е занятиек
   public boolean isAlertPresent() {
     try {
