@@ -25,7 +25,6 @@ public class GroupCreationTests extends TestBase{
 
   @Test(dataProvider = "validGroups")
   public void testGroupCreationTests(GroupData group) {
-   // GroupData group = new GroupData().withName(name).withHeader(header).withFooter(footer);//данные для создания группы
     app.goTo().groupPage();
     Groups before = app.group().all(); //Подсчет групп до добавления
     app.group().create(group);//создаем группу
@@ -35,6 +34,7 @@ public class GroupCreationTests extends TestBase{
             (before.withAdded(group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
     //в сравнении учасствует копия объекта
     }
+
   @Test
   public void testBadGroupCreationTests() {
     app.goTo().groupPage();
