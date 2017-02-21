@@ -1,19 +1,33 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends TestBase{
 
-  @Test
-  public void testGroupCreationTests() {
+  @DataProvider
+  public Iterator<Object[]> validGroups() {
+  List<Object[]> list = new ArrayList<Object[]>();
+  list.add(new Object[] {"test1","header1","footer1"});
+  list.add(new Object[] {"test2","header2","footer2"});
+  list.add(new Object[] {"test3","header3","footer3"});
+  return  list.iterator();
+  }
+
+  @Test(dataProvider = "validGroups")
+  public void testGroupCreationTests(String name, String header, String footer) {
+    GroupData group = new GroupData().withName(name).withHeader(header).withFooter(footer);//данные для создания группы
     app.goTo().groupPage();
     Groups before = app.group().all(); //Подсчет групп до добавления
-    GroupData group = new GroupData().withName("test2");//данные для создания группы
     app.group().create(group);//создаем группу
     assertThat(app.group().count(), equalTo(before.size() + 1));   // Проверка кол-ва групп до и после создания
     Groups after = app.group().all();  //Подсчет групп после добавления
