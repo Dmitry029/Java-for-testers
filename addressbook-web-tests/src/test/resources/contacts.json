@@ -1,0 +1,35 @@
+[
+  {
+    "firstname": "Вова 0",
+    "lastname": "Петров 0",
+    "address": "Солнечная 0",
+    "email": "kkk@jj.0",
+    "email2": "lll@jj.0",
+    "email3": "hhh@jj.0",
+    "homephone": "+375 17 1520",
+    "mobilephone": "+375 29 1610",
+    "workphone": "+375 17 4510"
+  },
+  {
+    "firstname": "Вова 1",
+    "lastname": "Петров 1",
+    "address": "Солнечная 1",
+    "email": "kkk@jj.1",
+    "email2": "lll@jj.1",
+    "email3": "hhh@jj.1",
+    "homephone": "+375 17 1521",
+    "mobilephone": "+375 29 1611",
+    "workphone": "+375 17 4511"
+  },
+  {
+    "firstname": "Вова 2",
+    "lastname": "Петров 2",
+    "address": "Солнечная 2",
+    "email": "kkk@jj.2",
+    "email2": "lll@jj.2",
+    "email3": "hhh@jj.2",
+    "homephone": "+375 17 1522",
+    "mobilephone": "+375 29 1612",
+    "workphone": "+375 17 4512"
+  }
+]

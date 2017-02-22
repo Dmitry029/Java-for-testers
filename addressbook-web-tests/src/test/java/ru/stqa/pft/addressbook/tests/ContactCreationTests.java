@@ -1,6 +1,8 @@
 package ru.stqa.pft.addressbook.tests;
 
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -23,7 +25,7 @@ import java.util.stream.Collectors;
 public class ContactCreationTests extends TestBase {
 
   @DataProvider
-  public Iterator<Object[]> validContacts() throws IOException {
+  public Iterator<Object[]> validContactsFromXml() throws IOException {
 
     List<Object[]> list = new ArrayList<Object[]>();
        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")));
@@ -40,8 +42,23 @@ public class ContactCreationTests extends TestBase {
        return contacts.stream().map((g)-> new Object[] {g}).collect(Collectors.toList()).iterator();
     }
 
+  @DataProvider
+  public Iterator<Object[]> validContactsFromJson() throws IOException {
 
-  @Test(dataProvider = "validContacts")                           //    (enabled = false) //выкл теста
+    List<Object[]> list = new ArrayList<Object[]>();
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.json")));
+    String json = "";
+    String line = reader.readLine();
+    while(line != null){
+      json += line;
+      line = reader.readLine();
+    }
+    Gson gson = new Gson();
+    List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>(){}.getType());
+    return contacts.stream().map((g)-> new Object[] {g}).collect(Collectors.toList()).iterator();
+  }
+
+  @Test(dataProvider = "validContactsFromJson")                           //    (enabled = false) //выкл теста
   public void testContactCreation(ContactData contact) {
     //Подсчет кол-ва контактов до создания нового**************************************************
     app.goTo().homePage(); //Переход на домашнюю страницу***********************
@@ -58,13 +75,7 @@ public class ContactCreationTests extends TestBase {
 
 
 
- /*ContactData contact = new ContactData().withFirstname("Ivan").withLastname("Pomidorov")
-            .withAddress("Minsk, Gagarina 21/14").withHomePhone("+375 17 5544120")
-            .withMobilePhone("+375 29 6222552").withWorkPhone("2741523")
-            .withEmail("lll@kkk.yy").withEmail2("ooo@kkk.yy").withEmail3("ppp@kkk.yy").withPhoto(photo);*/
-
-
-  /*@Test  //Вспомогательный тест проверка нахождения рисунка l6_m1
+   /*@Test  //Вспомогательный тест проверка нахождения рисунка l6_m1
   public void testCurrentDir(){
     File currentDir = new File(".");
     System.out.println(currentDir.getAbsolutePath());
@@ -74,15 +85,6 @@ public class ContactCreationTests extends TestBase {
   }*/
 
 
-/*File photo = new File("src/test/resources/images.png");//относительный путь к файлу.
+//File photo = new File("src/test/resources/images.png");//относительный путь к файлу.
     // Относительный по отношению к рабочей директории!! Т к программ на разных комп нах в разных
     // рабочих директориях  -АБСОЛЮТНЫЙ путь указывать нельзя!!!
-    list.add(new Object[] {new ContactData().withFirstname("Sasha1").withLastname("Rovny1").withAddress("Gogola 1")
-            .withHomePhone("+375 671").withMobilePhone("+375 781").withWorkPhone("+375 001").withEmail("qqq1")
-            .withEmail2("www1").withEmail3("eee1").withPhoto(photo)});
-    list.add(new Object[] {new ContactData().withFirstname("Sasha2").withLastname("Rovny2").withAddress("Gogola 2")
-            .withHomePhone("+375 672").withMobilePhone("+375 782").withWorkPhone("+375 002").withEmail("qqq2")
-            .withEmail2("www2").withEmail3("eee2").withPhoto(photo)});
-    list.add(new Object[] {new ContactData().withFirstname("Sasha3").withLastname("Rovny3").withAddress("Gogola 3")
-            .withHomePhone("+375 673").withMobilePhone("+375 783").withWorkPhone("+375 003").withEmail("qqq3")
-            .withEmail2("www3").withEmail3("eee3").withPhoto(photo)});*/
