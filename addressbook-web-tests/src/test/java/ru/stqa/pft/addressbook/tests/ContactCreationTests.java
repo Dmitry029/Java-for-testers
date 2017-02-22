@@ -40,7 +40,6 @@ public class ContactCreationTests extends TestBase {
        return contacts.stream().map((g)-> new Object[] {g}).collect(Collectors.toList()).iterator();
     }
 
-//  list.add(new Object[] {new GroupData().withName(split[0]).withHeader(split[1]).withFooter(split[2])});
 
   @Test(dataProvider = "validContacts")                           //    (enabled = false) //выкл теста
   public void testContactCreation(ContactData contact) {
