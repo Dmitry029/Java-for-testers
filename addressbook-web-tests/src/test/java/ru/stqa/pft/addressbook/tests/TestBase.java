@@ -13,7 +13,7 @@ import ru.stqa.pft.addressbook.appmanager.ApplicationMenager;
  */
 public class TestBase {
 
-  protected static final ApplicationMenager app = new ApplicationMenager(BrowserType.FIREFOX);
+  protected static final ApplicationMenager app = new ApplicationMenager(BrowserType.CHROME);
 
   @BeforeSuite
   public void setUp() throws Exception {
