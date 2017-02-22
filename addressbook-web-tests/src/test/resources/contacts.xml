@@ -1,0 +1,35 @@
+<list>
+  <contact>
+    <firstname>Вова 0</firstname>
+    <lastname>Петров 0</lastname>
+    <address>Солнечная 0</address>
+    <email>kkk@jj.0</email>
+    <email2>lll@jj.0</email2>
+    <email3>hhh@jj.0</email3>
+    <homephone>+375 17 1520</homephone>
+    <mobilephone>+375 29 1610</mobilephone>
+    <workphone>+375 17 4510</workphone>
+  </contact>
+  <contact>
+    <firstname>Вова 1</firstname>
+    <lastname>Петров 1</lastname>
+    <address>Солнечная 1</address>
+    <email>kkk@jj.1</email>
+    <email2>lll@jj.1</email2>
+    <email3>hhh@jj.1</email3>
+    <homephone>+375 17 1521</homephone>
+    <mobilephone>+375 29 1611</mobilephone>
+    <workphone>+375 17 4511</workphone>
+  </contact>
+  <contact>
+    <firstname>Вова 2</firstname>
+    <lastname>Петров 2</lastname>
+    <address>Солнечная 2</address>
+    <email>kkk@jj.2</email>
+    <email2>lll@jj.2</email2>
+    <email3>hhh@jj.2</email3>
+    <homephone>+375 17 1522</homephone>
+    <mobilephone>+375 29 1612</mobilephone>
+    <workphone>+375 17 4512</workphone>
+  </contact>
+</list>
