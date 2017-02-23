@@ -1,5 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -29,6 +31,7 @@ public class CompareDetailsAndEditPages extends TestBase {
     //*********************************************************************************************
   }
 
+
   @Test
   public void testCompareDetailsAndEditPages() {
     app.goTo().homePage();
@@ -41,14 +44,13 @@ public class CompareDetailsAndEditPages extends TestBase {
 
     assertThat(cleaned1(contactInforFromDetailesForm.getAllInformation()),equalTo
             (mergeDadaFromEditPage(contactInforFromEditForm)));
-
   }
 
   private String mergeDadaFromEditPage(ContactData contact) {
     return Arrays.asList(contact.getFirstname(),contact.getLastname(),contact.getAddress(),
             ("H:" + contact.getHomePhone()), ("M:" + contact.getMobilePhone()),("W:" +  contact.getWorkPhone()),
             contact.getEmail(),contact.getEmail2(),contact.getEmail3())
-            .stream().filter((s)-> ! s.equals(""))
+            .stream().filter((s)-> ! s.equals("")) //выбрасываем пустые элементы из строки
             .map(CompareDetailsAndEditPages::cleaned2)
             .collect(Collectors.joining(""));
   }
