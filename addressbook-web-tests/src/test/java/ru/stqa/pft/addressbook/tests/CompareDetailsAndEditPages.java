@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+
+import static com.sun.xml.internal.bind.WhiteSpaceProcessor.replace;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -47,8 +49,17 @@ public class CompareDetailsAndEditPages extends TestBase {
   }
 
   private String mergeDadaFromEditPage(ContactData contact) {
+
+    String H = "H:";
+    String M = "M:";
+    String W = "W:";
+
+    if(contact.getHomePhone().equals(""))  H = "";
+    if(contact.getMobilePhone().equals(""))  M = "";
+    if(contact.getWorkPhone().equals(""))  W = "";
+
     return Arrays.asList(contact.getFirstname(),contact.getLastname(),contact.getAddress(),
-            ("H:" + contact.getHomePhone()), ("M:" + contact.getMobilePhone()),("W:" +  contact.getWorkPhone()),
+            (H + contact.getHomePhone()), (M + contact.getMobilePhone()),(W +  contact.getWorkPhone()),
             contact.getEmail(),contact.getEmail2(),contact.getEmail3())
             .stream().filter((s)-> ! s.equals("")) //выбрасываем пустые элементы из строки
             .map(CompareDetailsAndEditPages::cleaned2)
