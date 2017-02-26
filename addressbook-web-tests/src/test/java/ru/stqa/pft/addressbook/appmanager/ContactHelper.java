@@ -162,12 +162,12 @@ public class ContactHelper extends HelperBase {
             .withEmail(email).withEmail2(email2).withEmail3(email3);
   }
 
-  //Метод загружающий информацию из формы детализации********************************************************
+  //Метод загружающий информацию со страницы с подробной инф о контакте*****************************
   public ContactData infoFromDetailesForm(ContactData contact) {
     initContactDetailesById(contact.getId());//переход по Id на стр детализации!!
 
     String allinformation = wd.findElement(By.id("content")).getText();
-    System.out.println(allinformation);
+    System.out.println("Информация со страницы с подробной инф о контакте: \n" + allinformation); //вывод на консоль считанной информации
     wd.navigate().back();
     return new ContactData().withAllInformation(allinformation);
   }

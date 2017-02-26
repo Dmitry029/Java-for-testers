@@ -41,8 +41,11 @@ public class CompareDetailsAndEditPages extends TestBase {
     ContactData contactInforFromEditForm = app.contact().infoFromEditForm(contact);
 
     ContactData contactInforFromDetailesForm = app.contact().infoFromDetailesForm(contact);
+
+    System.out.println("Ниже - почищенная инфа со страницы с подробной инф о контакте");
     System.out.println(cleaned1(contactInforFromDetailesForm.getAllInformation()));
     System.out.println(mergeDadaFromEditPage(contactInforFromEditForm));
+    System.out.println("Выше - почищенная инфа со страницы формы редактирования");
 
     assertThat(cleaned1(contactInforFromDetailesForm.getAllInformation()),equalTo
             (mergeDadaFromEditPage(contactInforFromEditForm)));
