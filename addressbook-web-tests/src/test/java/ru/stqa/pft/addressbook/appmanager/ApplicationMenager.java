@@ -29,6 +29,7 @@ public class ApplicationMenager {
   private GroupHelper groupHelper;
   private ContactHelper contactHelper;
   private String browser;
+  private DbHelper dbHelper;
 
 
   public ApplicationMenager(String browser)  {
@@ -40,11 +41,13 @@ public class ApplicationMenager {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
-    if (Objects.equals(browser, BrowserType.FIREFOX)){
+    dbHelper = new DbHelper();
+
+    if (Objects.equals(browser, BrowserType.FIREFOX)) {
       wd = new FirefoxDriver();
-    } else if (Objects.equals(browser, BrowserType.CHROME)){
+    } else if (Objects.equals(browser, BrowserType.CHROME)) {
       wd = new ChromeDriver();
-    } else if (Objects.equals(browser, BrowserType.IE)){
+    } else if (Objects.equals(browser, BrowserType.IE)) {
       wd = new InternetExplorerDriver();
       wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
@@ -55,7 +58,7 @@ public class ApplicationMenager {
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
-    sessionHelper.login(properties.getProperty("web.adminLogin"),properties.getProperty("web.adminPassword"));
+    sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
   }
 
   public void stop() { wd.quit();  }
@@ -65,5 +68,7 @@ public class ApplicationMenager {
   public ContactHelper contact() { return contactHelper;  }
 
   public NavigationHelper goTo() {return navigationHelper; }
+
+  public  DbHelper db(){return dbHelper;}
 
 }
