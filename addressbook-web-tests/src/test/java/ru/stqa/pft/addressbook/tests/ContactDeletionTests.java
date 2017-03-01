@@ -23,7 +23,7 @@ public class ContactDeletionTests extends TestBase {
   public void ensurePreconditions() {
     //Проверка существования контакта. Иначе - создание и далее удаление***************************
     app.goTo().homePage();
-      if (app.contact().all().size() == 0){
+      if (app.db().contacts().size() == 0){
       app.goTo().addNew();
       app. contact().create(new ContactData().withFirstname("Ivan11").withLastname("Pomidorov")
               .withAddress("Minsk, Gagarina 21/14").withHomePhone("+375 17 5544120")
@@ -37,11 +37,11 @@ public class ContactDeletionTests extends TestBase {
   @Test
   public void testContactDelation(){
 
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData deletedContact = before.iterator().next(); //элемент для удаления выбирается случайным образом
     app.contact().delete(deletedContact);
     assertThat(app.contact().countContact(), equalTo(before.size() - 1));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.without(deletedContact)));
     }
 }
