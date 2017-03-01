@@ -56,10 +56,11 @@ public class GroupCreationTests extends TestBase{
   @Test(dataProvider = "validGroupsFromJson")
   public void testGroupCreationTests(GroupData group) {
     app.goTo().groupPage();
-    Groups before = app.group().all(); //Подсчет групп до добавления
+    Groups before = app.db().groups();
     app.group().create(group);//создаем группу
     assertThat(app.group().count(), equalTo(before.size() + 1));   // Проверка кол-ва групп до и после создания
-    Groups after = app.group().all();  //Подсчет групп после добавления
+    Groups after = app.db().groups();
+
     assertThat(after, equalTo
             (before.withAdded(group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
     //в сравнении учасствует копия объекта
@@ -79,6 +80,12 @@ public class GroupCreationTests extends TestBase{
 }
 
 
+
+
+
+//выбор групп для сравнения из интерфейса до l7_m4
+//Groups before = app.group().all(); //Подсчет групп до добавления
+//Groups after = app.group().all();  //Подсчет групп после добавления
 
 
 //ищем элемент с максимальный идентификатор. это - идентификатор новой группы l4_m9
