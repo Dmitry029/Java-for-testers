@@ -63,7 +63,7 @@ public class GroupCreationTests extends TestBase{
 
     assertThat(after, equalTo
             (before.withAdded(group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
-    //в сравнении учасствует копия объекта
+    verifyGroupListInUI();
     }
 
   @Test     (enabled = false) //выкл теста
