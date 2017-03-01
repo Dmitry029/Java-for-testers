@@ -75,7 +75,7 @@ public class GroupCreationTests extends TestBase{
     assertThat(app.group().count(), equalTo(before.size()));   // Проверка кол-ва групп до и после создания
     Groups after = app.group().all();  //Подсчет групп после добавления
     assertThat(after, equalTo(before));
-
+    verifyGroupListInUI();
   }
 }
 
