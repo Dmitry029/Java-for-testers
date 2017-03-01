@@ -16,7 +16,7 @@ public class GroupDeletionTests extends TestBase{
         app.goTo().groupPage();
 
         // Проверка того, что группа есть, а если нет - создаем ее и удаляем.**********************
-        if (app.group().all().size() == 0) {
+        if (app.db().groups().size() == 0) {
             app.group().create(new GroupData().withName("test1"));
         }
         //******************************************************************************************
@@ -25,11 +25,13 @@ public class GroupDeletionTests extends TestBase{
     @Test
     public void testGroupDeletion() {
 
-        Groups before = app.group().all(); //Подсчет групп  до удаления
+        //Groups before = app.group().all(); //Подсчет групп  до удаления
+        Groups before = app.db().groups();
         GroupData deletedGroup = before.iterator().next();
         app.group().delete(deletedGroup);// для удаления передаем группу целиком ВЫБРАНА СЛУЧАЙНЫМ ОБРАЗОМ
         assertThat(app.group().count(), equalTo(before.size() - 1));   // Проверка кол-ва групп до и после создания
-        Groups after = app.group().all();  //Подсчет групп после удаления
+        Groups after = app.db().groups();
+        //Groups after = app.group().all();  //Подсчет групп после удаления
         assertThat(after, equalTo(before.without(deletedGroup)));
     }
 }
