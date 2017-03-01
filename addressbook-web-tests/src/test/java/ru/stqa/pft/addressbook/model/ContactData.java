@@ -105,7 +105,7 @@ public class ContactData {
   public String getAllPhones() { return allPhones;  }
   public String getAllEmails() { return allEmails;  }
   public String getAllInformation() { return allInformation;  }
-  public File getPhoto() {return new File(photo);  }
+ // public File getPhoto() {return new File(photo);  }
 
   public ContactData withPhoto(File photo) {
     this.photo = photo.getPath();

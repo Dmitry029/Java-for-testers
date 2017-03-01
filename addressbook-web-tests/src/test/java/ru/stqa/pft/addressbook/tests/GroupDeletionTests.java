@@ -25,16 +25,17 @@ public class GroupDeletionTests extends TestBase{
     @Test
     public void testGroupDeletion() {
 
-        //Groups before = app.group().all(); //Подсчет групп  до удаления
         Groups before = app.db().groups();
         GroupData deletedGroup = before.iterator().next();
         app.group().delete(deletedGroup);// для удаления передаем группу целиком ВЫБРАНА СЛУЧАЙНЫМ ОБРАЗОМ
         assertThat(app.group().count(), equalTo(before.size() - 1));   // Проверка кол-ва групп до и после создания
         Groups after = app.db().groups();
-        //Groups after = app.group().all();  //Подсчет групп после удаления
         assertThat(after, equalTo(before.without(deletedGroup)));
     }
 }
 
 
-// assertEquals(after.size(), before.size() - 1);  // Проверка кол-ва групп до и после удаления    }
+// assertEquals(after.size(), before.size() - 1);  // Проверка кол-ва групп до и после удаления
+
+//Groups before = app.group().all(); //Подсчет групп  до удаления Заменеи l7_m4
+//Groups after = app.group().all();  //Подсчет групп после удаления
