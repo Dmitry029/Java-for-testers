@@ -19,13 +19,14 @@ public class ContactModificationTests extends TestBase {
   public void ensurePreconditions(){
     app.goTo().homePage();
 
-    if (app.contact().all().size() == 0){
+    if (app.db().contacts().size() == 0) {
+
       // Проверка того, что группа есть, а если нет - она создается **********
-      app.goTo().groupPage();
-      if (app.group().all().size() == 0){
-        app.group().create(new GroupData().withName("test8"));
+      if (app.db().groups().size() == 0) {
+        app.goTo().groupPage(); // Переход на нужную страницу
+        app.group().create(new GroupData().withName("test1"));
       }
-      // блок проверки наличия группы окончен ********************************
+      // **********************************************************************
 
       //В случае отсутствия контакта, он создается. ***************************
       app.goTo().addNew();
@@ -42,7 +43,7 @@ public class ContactModificationTests extends TestBase {
 
   public void testContactModification(){
 
-    Contacts before = app.contact().all(); // before - множество контактов
+    Contacts before = app.db().contacts(); // before - множество контактов
     ContactData modifiedContact = before.iterator().next(); //элемент для удаления выбирается случайным образом
     // новая локальная переменная contact. заполняет контакт. l4_m7
     ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Sasha3")
@@ -51,9 +52,8 @@ public class ContactModificationTests extends TestBase {
             .withEmail2("iii@tt.ii").withEmail3("uuu@rr.uu").withGroup(null);
 
     app.contact().modify(contact);
-    //assertThat(app.contact().countContact(), equalTo(before.size()));
-    assertThat(app.contact().countContact(), equalTo(before.size()));
-    Contacts after = app.contact().all();
+    assertThat(app.contact().countContact(), equalTo(before.size())); //реализация Хеширования
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     }
 }
