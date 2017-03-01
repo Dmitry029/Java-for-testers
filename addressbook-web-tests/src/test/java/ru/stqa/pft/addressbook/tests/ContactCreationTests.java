@@ -64,11 +64,11 @@ public class ContactCreationTests extends TestBase {
   public void testContactCreation(ContactData contact) {
     //Подсчет кол-ва контактов до создания нового**************************************************
     app.goTo().homePage(); //Переход на домашнюю страницу***********************
-    Contacts before = (Contacts) app.contact().all(); //before - список объектов*
+    Contacts before = app.db().contacts(); // before - множество контактов взято из базы l7_m4
     app.goTo().addNew();                              // Переход на стр создания контакта
     app.contact().create(contact, true);      //создаем контакт
     assertThat(app.contact().countContact(), equalTo(before.size() + 1));
-    Contacts after = (Contacts) app.contact().all();   //after - множество объектов после добавления
+    Contacts after = app.db().contacts();   //after - множество объектов после добавления взято из базы l7_m4
     assertThat(after, equalTo
             (before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
