@@ -32,7 +32,7 @@ public class TestBase {
 
   protected static final ApplicationMenager app
           = new ApplicationMenager(System.getProperty("browser"
-          ,BrowserType.CHROME)); //дефолтный браузер CHROME
+          , BrowserType.CHROME)); //дефолтный браузер CHROME
 
   @BeforeSuite
   public void setUp() throws Exception {
@@ -45,31 +45,36 @@ public class TestBase {
   }
 
   @BeforeMethod
-  public void logTestStart(Method m, Object[] p){
+  public void logTestStart(Method m, Object[] p) {
     logger.info("Start test " + m.getName() + "with parameters " + Arrays.asList(p));
   }
 
   @AfterMethod(alwaysRun = true)
-  public void logTestStop(Method m){
+  public void logTestStop(Method m) {
     logger.info("Stop test " + m.getName());
   }
 
   //Сравнение данных из базы и UI У данных из базы выбираются только Id и name
   public void verifyGroupListInUI() {
-    if(Boolean.getBoolean("verifyUI")){
+    if (Boolean.getBoolean("verifyUI")) {
       Groups dbGroups = app.db().groups();
       Groups uiGroups = app.group().all();
+
       assertThat(uiGroups, equalTo(dbGroups.stream()
               .map((g) -> new GroupData().withId(g.getId()).withName(g.getName()))
               .collect(Collectors.toSet())));
     }
-    public void verifyContactListInUI() {
+  }
+   public void verifyContactListInUI() {
     if(Boolean.getBoolean("verifyUI")){
       Contacts dbContacts = app.db().contacts();
+      System.out.println("***db****" + dbContacts);
       Contacts uiContacts = app.contact().all();
+      System.out.println("***ui****" + uiContacts);
       assertThat(uiContacts, equalTo(dbContacts.stream()
-              .map((g) -> new ContactData().withId(g.getId()).withName(g.getName()))
-              .collect(Collectors.toSet())));
+             .map((g) -> new ContactData().withId(g.getId()).withFirstname(g.getFirstname())
+             .withLastname(g.getLastname()))
+             .collect(Collectors.toSet())));
     }
-  }
+    }
 }
