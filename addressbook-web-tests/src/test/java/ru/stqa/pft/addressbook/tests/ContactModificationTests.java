@@ -33,7 +33,7 @@ public class ContactModificationTests extends TestBase {
       app.contact().create(new ContactData().withFirstname("Ivan100").withLastname("Pomidorov")
                 .withAddress("Minsk, Gagarina 21/14").withHomePhone("+375 17 5544120")
                 .withMobilePhone("+375 29 6222552").withWorkPhone("587-38-14")
-                .withEmail("opi@poi.hj").withGroup("test8"), true);
+                .withEmail("opi@poi.hj"), true);
     }
     //*************************************************************************
   }
@@ -49,7 +49,7 @@ public class ContactModificationTests extends TestBase {
     ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Sasha3")
             .withLastname("Pomidorov").withAddress("Minsk, Gagarina 21/14").withHomePhone("+375 17 5544120")
             .withMobilePhone("+375 29 6222552").withWorkPhone("547-52-65").withEmail("iou@sdf.oi")
-            .withEmail2("iii@tt.ii").withEmail3("uuu@rr.uu").withGroup(null);
+            .withEmail2("iii@tt.ii").withEmail3("uuu@rr.uu");
 
     app.contact().modify(contact);
     assertThat(app.contact().countContact(), equalTo(before.size())); //реализация Хеширования

@@ -7,6 +7,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -66,15 +68,24 @@ public class ContactData {
   @Type(type = "text")
   private String photo;
 
-
-  @Transient //при выборке из бвзы эти атрибуты будут пропускаться
-  private String group;
+// атрибуты пропущенные при выборке из базы
   @Transient
   private String allPhones;
   @Transient
   private String allEmails;
-  @Transient
+  @Transient//при выборке из бвзы эти атрибуты (@Transient)будут пропускаться
   private String allInformation;
+
+
+  public Groups getGroups() {
+    return new Groups (groups);
+  }
+
+  @ManyToMany(fetch = FetchType.EAGER)   //l7_m6
+  @JoinTable(name = "address_in_groups",
+          joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
+
 
 
   public int getId() {return id;  }
@@ -101,7 +112,6 @@ public class ContactData {
   public String getEmail3() {
     return email3;
   }
-  public String getGroup() { return group;  }
   public String getAllPhones() { return allPhones;  }
   public String getAllEmails() { return allEmails;  }
   public String getAllInformation() { return allInformation;  }
@@ -173,10 +183,7 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -252,5 +259,12 @@ public class ContactData {
     this.group = group;    // Добавление группы в конструктор l3_m8. Убрал из скобок String group
 
   }*/
+
+
+ /*public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }*/
+// public String getGroup() { return group;  }
 
 

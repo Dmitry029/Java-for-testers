@@ -28,7 +28,7 @@ public class ContactEmailTests extends TestBase{
               .withAddress("Minsk, Gagarina 21/14").withHomePhone("+375 17 5544120")
               .withMobilePhone("+375 29 6222552").withWorkPhone("4576895")
               .withEmail("lkj@yui.io").withEmail2("ooo@iii.uu").withEmail3("yyy@uuu.gg")
-              .withGroup("test2"), true);
+              , true);
     }
     //*********************************************************************************************
   }

@@ -42,14 +42,15 @@ public class ContactHelper extends HelperBase {
  //   attach(By.name("photo"), contactData.getPhoto());
 
    // временно отключено для создания контактов без групп
-   // if (creation){
-   //   new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+   // if (contactData.getGroups().size() > 0){
+   //   Assert.assertTrue(contactData.getGroups().size() == 1);
+   //   new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
       /*creation true для теста создания контакта. Тест увидит наличие нужного эл-та и выберет
       из выпадающего списка группу по имени. Тест для модиф контакта creation false перех на else*/
    // } else {
    //   Assert.assertFalse(isElementPresent(By.name("new_group")));
       // Проверяем, что в форме нет элемента выбора группы. Контролируем отсутствие списка групп
-   // }
+    //}
   }
   //************************************************************************************************
   public void submitContactCreation() {click(By.name("submit"));}

@@ -8,6 +8,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -63,6 +64,8 @@ public class ContactCreationTests extends TestBase {
   @Test(dataProvider = "validContactsFromJson")                           //    (enabled = false) //выкл теста
   public void testContactCreation(ContactData contact) {
     //Подсчет кол-ва контактов до создания нового**************************************************
+   // Groups groups = app.db().groups();
+
     app.goTo().homePage(); //Переход на домашнюю страницу***********************
     Contacts before = app.db().contacts(); // before - множество контактов взято из базы l7_m4
     app.goTo().addNew();                              // Переход на стр создания контакта
