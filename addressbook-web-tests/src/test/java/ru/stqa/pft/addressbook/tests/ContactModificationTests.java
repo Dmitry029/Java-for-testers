@@ -55,7 +55,8 @@ public class ContactModificationTests extends TestBase {
     assertThat(app.contact().countContact(), equalTo(before.size())); //реализация Хеширования
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
-    verifyContactListInUI();
+
+    verifyContactListInUI();//проверка данных из БД и UI
 
     }
 }

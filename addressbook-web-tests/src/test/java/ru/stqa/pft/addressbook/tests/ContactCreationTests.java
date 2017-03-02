@@ -71,6 +71,7 @@ public class ContactCreationTests extends TestBase {
     Contacts after = app.db().contacts();   //after - множество объектов после добавления взято из базы l7_m4
     assertThat(after, equalTo
             (before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+    verifyContactListInUI();//проверка данных из БД и UI
   }
 }
 

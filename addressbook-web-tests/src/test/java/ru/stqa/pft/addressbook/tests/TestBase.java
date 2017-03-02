@@ -68,13 +68,13 @@ public class TestBase {
    public void verifyContactListInUI() {
     if(Boolean.getBoolean("verifyUI")){
       Contacts dbContacts = app.db().contacts();
-      System.out.println("***db****" + dbContacts);
+      System.out.println("***bd****" + dbContacts);
       Contacts uiContacts = app.contact().all();
       System.out.println("***ui****" + uiContacts);
       assertThat(uiContacts, equalTo(dbContacts.stream()
-             .map((g) -> new ContactData().withId(g.getId()).withFirstname(g.getFirstname())
-             .withLastname(g.getLastname()))
+             .map((g) -> new ContactData().withId(g.getId()).withLastname(g.getLastname())
+             .withFirstname(g.getFirstname()).withAddress(g.getAddress()))
              .collect(Collectors.toSet())));
-    }
+      }
     }
 }
