@@ -13,7 +13,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import java.util.List;
 
 /**
- * Created by Администратор on 28.02.2017.
+ * Created by Администратор on 28.02.2017. Метод получения инф из базы.
  */
 public class HbConnectionTest {
 
@@ -43,7 +43,7 @@ public class HbConnectionTest {
     List<ContactData> result = session.createQuery( "from ContactData where deprecated = '000-00-00'" ).list();
     for (ContactData contact : result) {
       System.out.println( contact );
-      System.out.println(contact.getGroups());
+      System.out.println(contact.getGroups()); //печатает группу у контакта
     }
     session.getTransaction().commit();
     session.close();

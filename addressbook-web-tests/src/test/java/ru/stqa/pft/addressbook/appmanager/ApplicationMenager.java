@@ -41,7 +41,7 @@ public class ApplicationMenager {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
-    dbHelper = new DbHelper();
+    dbHelper = new DbHelper();//конструктор загружает всю инфу из hibernate.cfg.xml
 
     if (Objects.equals(browser, BrowserType.FIREFOX)) {
       wd = new FirefoxDriver();
@@ -68,7 +68,7 @@ public class ApplicationMenager {
   public ContactHelper contact() { return contactHelper;  }
 
   public NavigationHelper goTo() {return navigationHelper; }
-
+//Метод возвращающий помощника  для работы с БД
   public  DbHelper db(){return dbHelper;}
 
 }

@@ -13,15 +13,14 @@ import ru.stqa.pft.addressbook.model.Groups;
 import java.util.List;
 
 /**
- * Created by Администратор on 01.03.2017.
+ * Created by Администратор on 01.03.2017. Помощьник для работы с БД
  */
 public class DbHelper {
   private final SessionFactory sessionFactory;
 
 
-
   public DbHelper(){
-// A SessionFactory is set up once for an application!
+// A SessionFactory is set up once for an application!   *****Блок установки связи с БД***l7_m4
     final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
             .configure() // configures settings from hibernate.cfg.xml
             .build();

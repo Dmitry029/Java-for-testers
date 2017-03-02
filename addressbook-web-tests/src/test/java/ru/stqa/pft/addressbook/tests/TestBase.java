@@ -66,6 +66,43 @@ public class TestBase {
     }
   }
    public void verifyContactListInUI() {
+
+       if(Boolean.getBoolean("verifyUI")){
+         Contacts dbContacts = app.db().contacts();
+         System.out.println("***bd****" + dbContacts);
+         Contacts uiContacts = app.contact().all();
+         System.out.println("***ui****" + uiContacts);
+         assertThat(uiContacts, equalTo(dbContacts.stream()
+                 .map((g) -> new ContactData().withId(g.getId()).withLastname(g.getLastname())
+                         .withFirstname(g.getFirstname()).withAddress(g.getAddress()))
+                 .collect(Collectors.toSet())));
+       }
+     }
+}
+    /*if(Boolean.getBoolean("verifyUI")){
+      Contacts dbContacts = app.db().con
+      tacts();
+      System.out.println("***bd****" + dbContacts);
+      Contacts uiContacts = app.contact().all();
+      System.out.println("***ui****" + uiContacts);
+      assertThat(cleaned1(uiContacts), equalTo(mergeDBContacts(dbContacts));
+      .stream()
+             .map((g) -> new ContactData().withId(g.getId()).withLastname(g.getLastname())
+             .withFirstname(g.getFirstname()).withAddress(g.getAddress()))
+             .collect(Collectors.toSet())));
+      }
+    }*/
+
+  /*private <Con> mergeDBContacts(Contacts dbContacts) {
+
+  }*/
+
+
+
+//assertThat(cleaned1(contactInforFromDetailesForm.getAllInformation()),equalTo
+//            (mergeDadaFromEditPage(contactInforFromEditForm)));
+
+/* public void verifyContactListInUI() {
     if(Boolean.getBoolean("verifyUI")){
       Contacts dbContacts = app.db().contacts();
       System.out.println("***bd****" + dbContacts);
@@ -76,5 +113,4 @@ public class TestBase {
              .withFirstname(g.getFirstname()).withAddress(g.getAddress()))
              .collect(Collectors.toSet())));
       }
-    }
-}
+    }*/
