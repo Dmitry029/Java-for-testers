@@ -31,12 +31,12 @@ public class GroupData {
   private String footer;
 
 
-  @ManyToMany(mappedBy = "groups")
+  @ManyToMany(mappedBy = "groups")  //l7_m6
   private Set<ContactData> contacts = new HashSet<ContactData>();
 
   public Set<ContactData> getContacts() {
     return contacts;
-  }
+  } //l7_m6
 
 
   public int getId() { return id;  }

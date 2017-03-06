@@ -69,13 +69,19 @@ public class TestBase {
 
        if(Boolean.getBoolean("verifyUI")){
          Contacts dbContacts = app.db().contacts();
+
          System.out.println("***bd****" + dbContacts);
          Contacts uiContacts = app.contact().all();
          System.out.println("***ui****" + uiContacts);
+
          assertThat(uiContacts, equalTo(dbContacts.stream()
                  .map((g) -> new ContactData().withId(g.getId()).withLastname(g.getLastname())
                          .withFirstname(g.getFirstname()).withAddress(g.getAddress()))
-                 .collect(Collectors.toSet())));
+                         .collect(Collectors.toSet())));
+         //***********************************************************
+
+
+
        }
      }
 }
@@ -102,15 +108,3 @@ public class TestBase {
 //assertThat(cleaned1(contactInforFromDetailesForm.getAllInformation()),equalTo
 //            (mergeDadaFromEditPage(contactInforFromEditForm)));
 
-/* public void verifyContactListInUI() {
-    if(Boolean.getBoolean("verifyUI")){
-      Contacts dbContacts = app.db().contacts();
-      System.out.println("***bd****" + dbContacts);
-      Contacts uiContacts = app.contact().all();
-      System.out.println("***ui****" + uiContacts);
-      assertThat(uiContacts, equalTo(dbContacts.stream()
-             .map((g) -> new ContactData().withId(g.getId()).withLastname(g.getLastname())
-             .withFirstname(g.getFirstname()).withAddress(g.getAddress()))
-             .collect(Collectors.toSet())));
-      }
-    }*/
