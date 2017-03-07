@@ -79,7 +79,7 @@ public class ContactDataGenerator {
         writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname()
                 , contact.getLastname(), contact.getAddress(), contact.getHomePhone()
                 , contact.getMobilePhone(), contact.getWorkPhone(), contact.getEmail()
-                , contact.getEmail2(), contact.getEmail3()));
+                , contact.getEmail2(), contact.getGroups()));
       }
     }
   }
@@ -92,7 +92,7 @@ public class ContactDataGenerator {
         .withLastname(String.format("Petrov %s", i)).withAddress(String.format("Sunny %s", i))
         .withHomePhone(String.format("+375 17 152%s",i)).withMobilePhone(String.format("+375 29 161%s",i))
         .withWorkPhone(String.format("+375 17 451%s", i)).withEmail(String.format("kkk@jj.%s", i))
-        .withEmail2(String.format("lll@jj.%s", i)).withEmail3(String.format("hhh@jj.%s", i)));
+        .withEmail2(String.format("lll@jj.%s", i)).String.format("Test %s", i));
     }
     return contacts;
   }
