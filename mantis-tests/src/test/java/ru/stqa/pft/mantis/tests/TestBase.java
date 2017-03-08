@@ -19,7 +19,7 @@ public class TestBase {
 
   protected static final ApplicationMenager app
           = new ApplicationMenager(System.getProperty("browser"
-          , BrowserType.CHROME)); //дефолтный браузер CHROME
+          , BrowserType.FIREFOX)); //дефолтный браузер CHROME
 
   @BeforeSuite
   public void setUp() throws Exception {

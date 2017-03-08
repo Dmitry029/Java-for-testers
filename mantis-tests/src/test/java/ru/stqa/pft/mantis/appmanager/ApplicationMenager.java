@@ -51,4 +51,16 @@ public class ApplicationMenager {
 
   public void stop() { wd.quit();  }
 
+  //инициализация помощника работы с сетьевым протоколом (в обход браузера)
+  public HttpSession newSession(){
+    return new HttpSession(this);
+  }
+
+  public String getProperty(String key) {
+    return properties.getProperty(key);
+  }
+
+  public RegistrationHelper registration() {
+    return new RegistrationHelper(this);
+  }
 }
