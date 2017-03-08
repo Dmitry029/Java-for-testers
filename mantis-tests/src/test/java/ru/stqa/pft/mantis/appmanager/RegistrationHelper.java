@@ -11,7 +11,8 @@ public class RegistrationHelper {
 
   public RegistrationHelper(ApplicationMenager app) {
     this.app = app;
-    wd = app.wd; //получаем у app ссылку на драйвер
+    wd = app.getDriver(); //ленивая инициализация/ Метод getDriver
+    //будет инициализировать браузер
   }
 
   public void start(String username, String email) {

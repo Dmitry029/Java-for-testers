@@ -21,10 +21,11 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationMenager {
 
   private final Properties properties;
-  WebDriver wd;
+  private WebDriver wd; //т о переменная wd доступна только черз getDriver()
 
 
   private String browser;
+  private RegistrationHelper registrationHelper;
 
   public ApplicationMenager(String browser)  {
     this.browser = browser;
@@ -34,22 +35,14 @@ public class ApplicationMenager {
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-
-
-    if (Objects.equals(browser, BrowserType.FIREFOX)) {
-      wd = new FirefoxDriver();
-    } else if (Objects.equals(browser, BrowserType.CHROME)) {
-      wd = new ChromeDriver();
-    } else if (Objects.equals(browser, BrowserType.IE)) {
-      wd = new InternetExplorerDriver();
-      wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    }
-
-    wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS); //5-задержка для появления элемента
-    wd.get(properties.getProperty("web.baseUrl"));
   }
 
-  public void stop() { wd.quit();  }
+
+  // если браузер (wd) был инициализирован - его остановитьб иначе ничего не делать.
+  public void stop() {
+    if (wd != null){
+    wd.quit();}
+  }
 
   //инициализация помощника работы с сетьевым протоколом (в обход браузера)
   public HttpSession newSession(){
@@ -61,6 +54,27 @@ public class ApplicationMenager {
   }
 
   public RegistrationHelper registration() {
-    return new RegistrationHelper(this);
+    if(registrationHelper == null){
+      return new RegistrationHelper(this);
+    }
+    return registrationHelper;
+  }
+
+  //лениваяы инициализация драйвера l8_m4. Браузер будет инициализироваться только тогда когд
+  //будет вызван метод getDriver
+  public WebDriver getDriver() {
+    if(wd == null) {
+      if (Objects.equals(browser, BrowserType.FIREFOX)) {
+        wd = new FirefoxDriver();
+      } else if (Objects.equals(browser, BrowserType.CHROME)) {
+        wd = new ChromeDriver();
+      } else if (Objects.equals(browser, BrowserType.IE)) {
+        wd = new InternetExplorerDriver();
+        wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+      }
+      wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS); //5-задержка для появления элемента
+      wd.get(properties.getProperty("web.baseUrl"));
+    }
+      return wd;
   }
 }
