@@ -9,7 +9,7 @@ package ru.stqa.pft.mantis.appmanager;
         import org.apache.http.impl.client.LaxRedirectStrategy;
         import org.apache.http.message.BasicNameValuePair;
         import org.apache.http.util.EntityUtils;
-        import ru.stqa.pft.mantis.appmanager.ApplicationMenager;
+        import ru.stqa.pft.mantis.appmanager.ApplicationManager;
         import org.apache.http.impl.client.CloseableHttpClient;
         import sun.net.www.http.HttpClient;
 
@@ -23,14 +23,17 @@ package ru.stqa.pft.mantis.appmanager;
  */
 public class HttpSession{
   private CloseableHttpClient httpclient;
-  private ApplicationMenager app;
+  private ApplicationManager app;//Запоминается ссылка на ApplicationManager
 
-  public HttpSession(ApplicationMenager app) {
+  //Передается ссылка на ApplicationManager
+  public HttpSession(ApplicationManager app) {
     this.app = app;
-      //**создание нового клиента новая сессия для работы по протоколу http. Объект который будет
+      //**создание нового клиента, новая сессия для работы по протоколу http. Объект который будет
       // отправлять запросы на сервер
     httpclient = HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
   }
+
+
       //метод определяющий логин l8_m3
   public boolean login(String username, String password) throws IOException {
       //**в строке ниже создается запрорс(на адрес login) типа post для того, чтоб залогинится
@@ -41,7 +44,8 @@ public class HttpSession{
     params.add(new BasicNameValuePair("password", password));
     params.add(new BasicNameValuePair("secure_session", "on"));
     params.add(new BasicNameValuePair("return", "index.php"));
-      //**все упаковывается и помещается в запрос post
+
+      //**все упаковывается и помещается в запрос post setEntity
     post.setEntity(new UrlEncodedFormEntity(params));//запрос сформирован и готов к отправке
     CloseableHttpResponse response = httpclient.execute(post);//происходит отправка (после знака =)
       //**response - строка выше - это ответ сервера. ниже он анализируется. Получаем его текст

@@ -7,7 +7,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import ru.stqa.pft.mantis.appmanager.ApplicationMenager;
+import ru.stqa.pft.mantis.appmanager.ApplicationManager;
+
 
 
 
@@ -17,8 +18,8 @@ import ru.stqa.pft.mantis.appmanager.ApplicationMenager;
 public class TestBase {
 
 
-  protected static final ApplicationMenager app
-          = new ApplicationMenager(System.getProperty("browser"
+  protected static final ApplicationManager app
+          = new ApplicationManager(System.getProperty("browser"
           , BrowserType.FIREFOX)); //дефолтный браузер CHROME
 
   @BeforeSuite

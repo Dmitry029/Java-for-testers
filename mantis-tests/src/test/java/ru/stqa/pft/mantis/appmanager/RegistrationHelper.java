@@ -6,10 +6,10 @@ import org.openqa.selenium.WebDriver;
  * Created by Администратор on 08.03.2017.
  */
 public class RegistrationHelper {
-  private final  ApplicationMenager app;
+  private final  ApplicationManager app;
   private WebDriver wd; //запуск браузера
 
-  public RegistrationHelper(ApplicationMenager app) {
+  public RegistrationHelper(ApplicationManager app) {
     this.app = app;
     wd = app.getDriver(); //ленивая инициализация/ Метод getDriver
     //будет инициализировать браузер
