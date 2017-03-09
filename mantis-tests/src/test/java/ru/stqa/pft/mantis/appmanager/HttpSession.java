@@ -52,7 +52,7 @@ public class HttpSession{
     String body = geTextFrom(response);
       //**проверка - действительно ли пользователь успешно вошел. Есть ли в коде страници строка в " "
       // где находится имя пользователя, который вошел в с-му
-    return body.contains(String.format("<span class=\"italic\">%s</span>", username));
+    return body.contains(String.format("<span class=\"label hidden-xs label-default arrowed\">%s</span>", username));
   }
 
   private String geTextFrom(CloseableHttpResponse response) throws  IOException{
@@ -70,7 +70,9 @@ public class HttpSession{
     CloseableHttpResponse response = httpclient.execute(get); //отправляется запрос (после =)
       //**response строка выше - это ответ сервера. ниже он анализируется. Получаем его текст
     String body = geTextFrom(response);
-      //проверяем действительно ли в тексте стр содержится нужный фрагмент т е залогинен именно тот пользователь
-    return body.contains(String.format("<span class=\"italic\">%s</span>", username));
+    //проверяем действительно ли в тексте стр содержится нужный фрагмент т е залогинен именно тот пользователь
+    //return body.contains(String.format("<span class=\"italic\">%s</span>", username));
+    return body.contains(String.format("<span class=\"label hidden-xs label-default arrowed\">%s</span>", username));
   }
 }
+//

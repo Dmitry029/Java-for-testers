@@ -52,9 +52,9 @@ public class ApplicationManager {
     }
 
     public RegistrationHelper registration() {
-    //  if(registrationHelper == null){
-    //    return new RegistrationHelper(this);
-    //  }
+      if(registrationHelper == null){
+        return new RegistrationHelper(this);
+      }
       return registrationHelper;
     }
 
