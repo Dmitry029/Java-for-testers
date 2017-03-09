@@ -24,19 +24,22 @@ public class ApplicationManager {
 
     private String browser;
     private RegistrationHelper registrationHelper;
+  private FtpHelper ftp;
 
-    public ApplicationManager(String browser)  {
+  public ApplicationManager(String browser)  {
       this.browser = browser;
       properties = new Properties();
     }
 
+    //При вызовк init() загружается только конфигурационный файл. Драйвер инициализир только после
+    // обращения к нему - вызов getDriver()
     public void init() throws IOException {
       String target = System.getProperty("target", "local");
       properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
     }
 
 
-    // если браузер (wd) был инициализирован - его остановитьб иначе ничего не делать.
+    // если браузер (wd) был инициализирован - его остановить. Иначе - ничего не делать.
     public void stop() {
       if (wd != null){
         wd.quit();}
@@ -51,15 +54,26 @@ public class ApplicationManager {
       return properties.getProperty(key);
     }
 
+
+    //реализована ленивая инициализация
     public RegistrationHelper registration() {
       if(registrationHelper == null){
-        return new RegistrationHelper(this);
+        return new RegistrationHelper(this);// выполняется инициализация если еще не инициализирован
       }
       return registrationHelper;
     }
 
-    //лениваяы инициализация драйвера l8_m4. Браузер будет инициализироваться только тогда когд
-    //будет вызван метод getDriver
+    public FtpHelper ftp(){
+      if(ftp == null){
+        ftp = new FtpHelper(this);
+      }
+      return ftp;
+    }
+
+
+
+    //лениваяы инициализация драйвера l8_m4. Браузер будет инициализироваться только тогда когда
+    //будет вызван метод getDriver(). Если драйвер проинициализирован - ничего делать не надо
     public WebDriver getDriver() {
       if(wd == null) {
         if (Objects.equals(browser, BrowserType.FIREFOX)) {

@@ -12,7 +12,7 @@ public class RegistrationHelper {
   public RegistrationHelper(ApplicationManager app) {
     this.app = app;
     wd = app.getDriver(); //ленивая инициализация/ Метод getDriver
-    //будет инициализировать браузер
+    //будет инициализировать браузер в момент перврго обращения
   }
 
   public void start(String username, String email) {
