@@ -1,21 +1,21 @@
 package ru.stqa.pft.mantis.appmanager;
 
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
 
-/**
- * Created by Администратор on 08.03.2017.
- */
-public class RegistrationHelper {
-  private final  ApplicationManager app;
-  private WebDriver wd; //запуск браузера
+public class RegistrationHelper extends HelperBase {
 
   public RegistrationHelper(ApplicationManager app) {
-    this.app = app;
-    wd = app.getDriver(); //ленивая инициализация/ Метод getDriver
-    //будет инициализировать браузер в момент перврго обращения
+    super(app);
   }
 
   public void start(String username, String email) {
+
     wd.get(app.getProperty("web.baseUrl") + "/signup_page.php");
+    //Заполняем в форме регистрации поля Пользователь
+    type(By.name("username"), username);
+    //Заполняем поле Email
+    type(By.name("email"), email);
+    click(By.cssSelector("input[value='Зарегистрироваться']"));
+    //после этого на указанный адрес эл почты отправляется письмо
   }
 }
