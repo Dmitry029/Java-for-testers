@@ -11,7 +11,8 @@ public class RegistrationHelper extends HelperBase {
   public void start(String username, String email) {
 
     wd.get(app.getProperty("web.baseUrl") + "/signup_page.php");
-    //Заполняем в форме регистрации поля Пользователь
+    //Заполняем в форме регистрации поля Пользователь первый параметр - локатор,
+    // второй - текст который надо ввести
     type(By.name("username"), username);
     //Заполняем поле Email
     type(By.name("email"), email);
