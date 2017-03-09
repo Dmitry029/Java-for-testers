@@ -16,11 +16,10 @@ public class LoginTests extends TestBase{
   @Test
   public void testLogin() throws IOException {
     HttpSession session = app.newSession();
-      //проверка того что пользователь залогинился - на странице почвился
+      //проверка того что пользователь залогинился - на странице появился
       //нужный текст
     assertTrue(session.login("administrator", "root"));
       //вторая проверка -
     assertTrue(session.isLoggedInAs("administrator"));
   }
-
 }
