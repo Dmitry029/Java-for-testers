@@ -31,7 +31,7 @@ public class ApplicationManager {
       properties = new Properties();
     }
 
-    //При вызовк init() загружается только конфигурационный файл. Драйвер инициализир только после
+    //При вызове init() загружается только конфигурационный файл. Драйвер инициализир только после
     // обращения к нему - вызов getDriver()
     public void init() throws IOException {
       String target = System.getProperty("target", "local");
